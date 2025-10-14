@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@font-face {
+  font-family: Anon;
+  src: url("./assets/fonts/AnonymousPro-Regular.ttf");
+}
+
+@theme {
+  --color-text: #130b06;
+  --color-background: #f9f1ec;
+}
+
+@layer theme {
+  :root,
+  :host {
+    @variant dark {
+      --color-background: #130b06;
+      --color-text: #f9f1ec;
+    }
+  }
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: Anon, monospace;
+  }
+}
