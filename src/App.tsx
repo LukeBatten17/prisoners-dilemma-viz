@@ -1,17 +1,16 @@
-import NavBar from "./components/NavBar";
-import { ThemeProvider } from "./context/ThemeContext";
+import { Routes, Route, BrowserRouter } from "react-router";
+import Game from "./pages/Game";
+import About from "./pages/About";
 
 function App() {
   return (
-    <ThemeProvider>
-      <div className=" flex flex-col bg-background min-h-screen">
-        <NavBar />
-        <main className="max-w-screen-xl mx-auto ">
-          {/* Main content goes here */}
-          Game Visualization Placeholder
-        </main>
-      </div>
-    </ThemeProvider>
+    <BrowserRouter>
+      <Routes>
+        {/* Main content goes here */}
+        <Route path="/" element={<Game />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

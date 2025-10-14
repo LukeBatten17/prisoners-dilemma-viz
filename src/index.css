@@ -8,16 +8,29 @@
 }
 
 @theme {
-  --color-text: #130b06;
+  --color-text: #0b0604;
   --color-background: #f9f1ec;
+  --color-primary: #fa802e;
+  --color-secondary: #686963;
+  --color-accent: #d28f74;
+
+  --shadow-sm: 2px 2px 0px 2px #000000;
+  --shadow-md: 4px 4px 0px 2px #000000;
+  --shadow-lg: 6px 6px 0px 2px #000000;
+
+  --text-shadow-sm: 1px 1px 0px #000000;
+  --text-shadow-md: 2px 2px 0px #000000;
+  --text-shadow-lg: 3px 3px 0px #000000;
 }
 
 @layer theme {
   :root,
   :host {
     @variant dark {
+      --color-text: #fbf6f4;
       --color-background: #130b06;
-      --color-text: #f9f1ec;
+      --color-primary: #d15705;
+      --color-secondary: #9b9c96;
     }
   }
 }
