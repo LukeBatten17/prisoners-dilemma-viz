@@ -14,7 +14,7 @@
   --color-secondary: #686963;
   --color-accent: #d28f74;
 
-  --shadow-sm: 2px 2px 0px 2px #000000;
+  --shadow-sm: 2px 2px 0px 0px #000000;
   --shadow-md: 4px 4px 0px 2px #000000;
   --shadow-lg: 6px 6px 0px 2px #000000;
 
@@ -27,10 +27,14 @@
   :root,
   :host {
     @variant dark {
-      --color-text: #fbf6f4;
+      --color-text: #f3e2d8;
       --color-background: #130b06;
       --color-primary: #d15705;
       --color-secondary: #9b9c96;
+
+      --shadow-sm: 2px 2px 0px 0px #e7c6b1;
+      --shadow-md: 4px 4px 0px 2px #e7c6b1;
+      --shadow-md: 4px 4px 0px 2px #e7c6b1;
     }
   }
 }

@@ -1,0 +1,44 @@
+export const Figure = () => {
+  return (
+    <svg
+      width="85"
+      height="144"
+      viewBox="0 0 85 144"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <line
+        y1="-0.5"
+        x2="70.3138"
+        y2="-0.5"
+        transform="matrix(-0.0102032 0.999948 0.999957 0.00923734 45.7631 35.1549)"
+        stroke="currentColor"
+      />
+      <line
+        y1="-0.5"
+        x2="52"
+        y2="-0.5"
+        transform="matrix(1 0 0 -1 19 64)"
+        stroke="currentColor"
+      />
+      <path
+        d="M46 0.5C35.1656 0.5 26.5 8.17179 26.5 17.5C26.5 26.8282 35.1656 34.5 46 34.5C56.8344 34.5 65.5 26.8282 65.5 17.5C65.5 8.17179 56.8344 0.5 46 0.5Z"
+        stroke="currentColor"
+      />
+      <line
+        y1="-0.5"
+        x2="56.3605"
+        y2="-0.5"
+        transform="matrix(0.781623 -0.623751 -0.66125 -0.750165 0 139.155)"
+        stroke="currentColor"
+      />
+      <line
+        x1="44.3536"
+        y1="103.646"
+        x2="83.9515"
+        y2="143.244"
+        stroke="currentColor"
+      />
+    </svg>
+  );
+};
