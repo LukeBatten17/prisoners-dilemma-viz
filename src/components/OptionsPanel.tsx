@@ -1,6 +1,19 @@
 import React from "react";
+import Button from "../components/Button";
 
-const OptionsPanel = () => {
+type OptionsPanelProps = {
+  startGame: any;
+  resetGame: any;
+  pauseGame: any;
+  isRunning: boolean;
+};
+
+const OptionsPanel: React.FC<OptionsPanelProps> = ({
+  startGame,
+  resetGame,
+  pauseGame,
+  isRunning,
+}) => {
   return (
     <div className="h-12 border flex justify-between items-center gap-10 p-4">
       <div>
@@ -40,12 +53,15 @@ const OptionsPanel = () => {
         </select>
       </div>
       <div className="flex gap-2">
-        <button className="border dark:border-[#f3e2d8] px-4 rounded-full text-lg shadow-sm dark:shadow-[#f3e2d8]">
-          reset
-        </button>
-        <button className="border dark:border-[#f3e2d8] px-6 rounded-full text-lg font-bol bg-primary shadow-sm dark:shadow-[#f3e2d8]">
-          Go
-        </button>
+        <Button onClick={resetGame} className="px-4 text-lg">
+          Reset
+        </Button>
+        <Button
+          className="px-6 bg-primary text-lg"
+          onClick={() => (isRunning ? pauseGame() : startGame())}
+        >
+          {isRunning ? "Pause" : "Start"}
+        </Button>
       </div>
     </div>
   );
