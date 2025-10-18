@@ -21,11 +21,13 @@ const Game = () => {
     pauseGame,
     stratOneHistory,
     stratTwoHistory,
+    updateDelay,
+    updateMaxRounds,
   } = useGameLogic();
   return (
-    <div className=" flex flex-col bg-background min-h-screen text-text">
+    <div className=" flex flex-col bg-background  text-text h-full sm:h-screen">
       <NavBar />
-      <main className="max-w-screen-xl mx-auto w-full">
+      <main className="max-w-screen-xl mx-auto w-full p-2 md:p-4">
         {/* Top row - 3 boxes */}
         <div className="w-fit place-self-center mb-4">
           <OptionsPanel
@@ -33,9 +35,11 @@ const Game = () => {
             resetGame={resetGame}
             pauseGame={pauseGame}
             isRunning={isRunning}
+            updateDelay={updateDelay}
+            updateMaxRounds={updateMaxRounds}
           />
         </div>
-        <div className="flex gap-4 mb-4">
+        <div className="flex flex-col gap-4 mb-4 sm:flex-row   ">
           <div className="flex-1">
             <StrategyCard
               strategyNumber={1}
@@ -44,7 +48,7 @@ const Game = () => {
               score={scores.strat_one}
             />
           </div>
-          <div className=" flex  flex-col flex-1 gap-4 max-w-96">
+          <div className=" flex  flex-col flex-1 gap-4 ">
             <TimelinePanel
               currentRound={currentRound}
               maxRounds={maxRounds}

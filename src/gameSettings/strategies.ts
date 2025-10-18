@@ -1,10 +1,4 @@
-export type Move = "C" | "D";
-
-interface Strategy {
-  name: string;
-  description: string;
-  strategy: (selfHistory: Move[], opponentHistory: Move[]) => Move;
-}
+import type { Strategy } from "../gameSettings/types";
 
 export const AlwaysCooperate: Strategy = {
   name: "Always Cooperate",
@@ -20,10 +14,10 @@ export const AlwaysDefect: Strategy = {
 
 export const TitForTat: Strategy = {
   name: "Tit-for-Tat",
-  description: "Starts with “C”, then copies opponent’s last move",
-  strategy: (opponentHistory) => {
+  description: "Starts with “C”, then copies opponent's last move",
+  strategy: (_selfHistory, opponentHistory) => {
     if (opponentHistory.length === 0) return "C";
-    if (opponentHistory[-1] === "D") return "D";
+    if (opponentHistory[opponentHistory.length - 1].move === "D") return "D";
     else return "C";
   },
 };
@@ -40,8 +34,9 @@ export const Spiteful: Strategy = {
   name: "Spiteful",
   description:
     "Cooperates until the opponent defects and thereafter always defect. Sometimes also called grim.",
-  strategy: (opponentHistory) => {
-    if (opponentHistory.includes("D")) return "D";
+  strategy: (_selfHistory, opponentHistory) => {
+    if (opponentHistory.length === 0) return "C";
+    if (opponentHistory.some((value) => value.move === "D")) return "D";
     else return "C";
   },
 };

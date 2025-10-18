@@ -24,13 +24,13 @@ const StrategyCard: React.FC<StrategyCardProps> = ({
   const selectedIndex = strategies.findIndex((s) => s.name === strategy?.name);
 
   return (
-    <div className="flex flex-col justify-center items-center p-2 border">
+    <div className="flex flex-col justify-center items-center p-2 border max-w-sm">
       <h1 className="text-2xl font-bold mb-2">{`Strategy ${strategyNumber}`}</h1>
 
       <select
         name="strategy"
         id={`strategy-${strategyNumber}`}
-        className="border p-1 rounded-full shadow-sm"
+        className="border p-1 shadow-sm dark:border-[#f3e2d8] dark:shadow-[#f3e2d8] bg-background text-text"
         value={selectedIndex >= 0 ? selectedIndex : 0}
         onChange={(e) => onStrategyChange(+e.target.value)}
       >

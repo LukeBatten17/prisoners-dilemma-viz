@@ -1,13 +1,6 @@
 import { useEffect, useState } from "react";
 import DEFAULT_CONFIG from "../gameSettings/config";
-
-// ...existing code...
-type Move = "C" | "D" | string;
-
-interface HistoryEntry {
-  move: Move;
-  payoff: number;
-}
+import type { HistoryEntry } from "../gameSettings/types";
 
 export function useGameLogic() {
   const [currentRound, setCurrentRound] = useState(0);
@@ -27,6 +20,7 @@ export function useGameLogic() {
   );
   console.log(`Strategy 1 is ${strategyOne.name}`);
   console.log(`Strategy 2 is ${strategyTwo.name}`);
+  console.log(delay);
   try {
     useEffect(() => {
       if (!isRunning || currentRound >= maxRounds) return;
@@ -34,6 +28,8 @@ export function useGameLogic() {
       const timer = setTimeout(() => {
         const move_one = strategyOne.strategy(stratOneHistory, stratTwoHistory);
         const move_two = strategyTwo.strategy(stratTwoHistory, stratOneHistory);
+        console.log("Strat 1", strategyOne.strategy);
+        console.log("Strat 2", strategyTwo.strategy);
 
         const key =
           `${move_one}${move_two}` as keyof typeof DEFAULT_CONFIG.payoffMatrix;
@@ -72,6 +68,7 @@ export function useGameLogic() {
   }
   useEffect(() => {
     console.log("History updated:", stratOneHistory);
+    console.log("History updated:", stratTwoHistory);
   }, [stratOneHistory]);
 
   const resetGame = () => {
