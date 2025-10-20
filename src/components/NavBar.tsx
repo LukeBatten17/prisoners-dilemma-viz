@@ -5,6 +5,7 @@ import { GitHub } from "../assets/icons/GitHub";
 import { DarkMode } from "../assets/icons/DarkMode";
 import { LightMode } from "../assets/icons/LightMode";
 import { NavLink, Link } from "react-router";
+import Button from "../components/Button";
 
 const NavBar = () => {
   const { theme, toggleTheme } = useTheme();
@@ -15,7 +16,7 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 py-3 border-b-2 border-b-text mb-6">
+    <nav className="sticky top-0 z-50 py-3 border-b-2 border-b-text mb-6 bg-background">
       <div className="container px-4 mx-auto relative lg:text-sm text-text ">
         <div className="flex justify-between items-center">
           <Link to="/" className="flex-1 ">

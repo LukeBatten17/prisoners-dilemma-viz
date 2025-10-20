@@ -23,13 +23,16 @@ const Game = () => {
     stratTwoHistory,
     updateDelay,
     updateMaxRounds,
+    delay,
+    payoff,
   } = useGameLogic();
+
   return (
-    <div className=" flex flex-col bg-background  text-text h-full sm:h-screen">
+    <div className="flex flex-col bg-background w-full min-h-screen text-text">
       <NavBar />
-      <main className="max-w-screen-xl mx-auto w-full p-2 md:p-4">
-        {/* Top row - 3 boxes */}
-        <div className="w-fit place-self-center mb-4">
+      <main className="flex flex-col justify-center items-center mx-auto p-4 pb-8 max-w-6xl">
+        {/* Options Panel */}
+        <div className=" mb-4">
           <OptionsPanel
             startGame={startGame}
             resetGame={resetGame}
@@ -39,35 +42,60 @@ const Game = () => {
             updateMaxRounds={updateMaxRounds}
           />
         </div>
-        <div className="flex flex-col gap-4 mb-4 sm:flex-row   ">
-          <div className="flex-1">
+
+        {/* Main Content Grid */}
+        <div className="flex flex-col md:flex-row gap-4 mb-4">
+          {/* Strategy Card 1 */}
+          <div className="flex-1 lg:w-xs">
             <StrategyCard
               strategyNumber={1}
               strategy={strategyOne}
               setStrategy={setStrategyOne}
               score={scores.strat_one}
+              recentMove={
+                stratOneHistory.length > 0
+                  ? stratOneHistory[stratOneHistory.length - 1]?.move
+                  : null
+              }
+              delay={delay}
+              currentRound={currentRound}
             />
           </div>
-          <div className=" flex  flex-col flex-1 gap-4 ">
+
+          {/* Center Column */}
+          <div className="flex flex-col gap-4 w-[348px] sm:w-[384px] md:w-[404] ">
             <TimelinePanel
               currentRound={currentRound}
               maxRounds={maxRounds}
               stratOneHistory={stratOneHistory}
               stratTwoHistory={stratTwoHistory}
             />
-            <PayoffMatrix />
+            <PayoffMatrix
+              recentPayoff={payoff}
+              delay={delay}
+              currentRound={currentRound}
+            />
           </div>
-          <div className="flex-1">
+
+          {/* Strategy Card 2 */}
+          <div className="flex-1 lg:w-xs ">
             <StrategyCard
               strategyNumber={2}
               strategy={strategyTwo}
               setStrategy={setStrategyTwo}
               score={scores.strat_two}
+              recentMove={
+                stratTwoHistory.length > 0
+                  ? stratTwoHistory[stratTwoHistory.length - 1]?.move
+                  : null
+              }
+              delay={delay}
+              currentRound={currentRound}
             />
           </div>
         </div>
 
-        {/* Bottom row - full width */}
+        {/* Chart */}
         <div className="w-full">
           <ChartCard />
         </div>

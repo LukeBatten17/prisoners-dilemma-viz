@@ -8,6 +8,7 @@ export function useGameLogic() {
   const [isRunning, setIsRunning] = useState(false);
   const [maxRounds, setMaxRounds] = useState(DEFAULT_CONFIG.maxRounds);
   const [delay, setDelay] = useState(DEFAULT_CONFIG.delay);
+  const [payoff, setPayoff] = useState(null);
 
   const [stratOneHistory, setStratOneHistory] = useState<HistoryEntry[]>([]);
   const [stratTwoHistory, setStratTwoHistory] = useState<HistoryEntry[]>([]);
@@ -18,9 +19,7 @@ export function useGameLogic() {
   const [strategyTwo, setStrategyTwo] = useState(
     DEFAULT_CONFIG.defaultStratTwo
   );
-  console.log(`Strategy 1 is ${strategyOne.name}`);
-  console.log(`Strategy 2 is ${strategyTwo.name}`);
-  console.log(delay);
+
   try {
     useEffect(() => {
       if (!isRunning || currentRound >= maxRounds) return;
@@ -35,7 +34,7 @@ export function useGameLogic() {
           `${move_one}${move_two}` as keyof typeof DEFAULT_CONFIG.payoffMatrix;
         const [payoff_one, payoff_two] = DEFAULT_CONFIG.payoffMatrix[key];
         //const { payoffOne: number, payoffTwo: number } = DEFAULT_CONFIG.payoffMatrix[move_one+move_two]
-
+        setPayoff(`${payoff_one}${payoff_two}`);
         setStratOneHistory((prev) => [
           ...prev,
           { move: move_one, payoff: payoff_one },
@@ -66,10 +65,10 @@ export function useGameLogic() {
     console.error(e);
     setIsRunning(false);
   }
-  useEffect(() => {
-    console.log("History updated:", stratOneHistory);
-    console.log("History updated:", stratTwoHistory);
-  }, [stratOneHistory]);
+  // useEffect(() => {
+  //   console.log("History updated:", stratOneHistory);
+  //   console.log("History updated:", stratTwoHistory);
+  // }, [stratOneHistory]);
 
   const resetGame = () => {
     setIsRunning(false);
@@ -79,6 +78,7 @@ export function useGameLogic() {
     setStratTwoHistory([]);
     setStrategyOne(DEFAULT_CONFIG.defaultStratOne);
     setStrategyTwo(DEFAULT_CONFIG.defaultStratTwo);
+    setPayoff(null);
   };
 
   const startGame = () => setIsRunning(true);
@@ -103,5 +103,6 @@ export function useGameLogic() {
     updateDelay,
     setStrategyOne,
     setStrategyTwo,
+    payoff,
   };
 }

@@ -30,7 +30,7 @@ const TimelinePanel: React.FC<TimelinePanelProps> = ({
   }, [stratOneHistory.length, stratTwoHistory.length]);
 
   return (
-    <div className="border flex flex-col gap-2 max-w-sm">
+    <div className="border flex flex-col gap-2">
       <div className="flex justify-start align-center gap-2 p-2">
         <div className="flex flex-col gap-1.5  text-nowrap">
           <p>Strategy 1: </p>
@@ -75,10 +75,12 @@ const TimelineChips = ({ children, className = "" }) => {
   return (
     <motion.span
       initial={{ scale: 0, opacity: 0, y: 0 }}
-      animate={{ scale: 1, opacity: 1, y: 0, rotate: 360 }}
+      animate={{ scale: 1, opacity: 1, y: 0 }}
       transition={{ type: "spring", stiffness: 1000, damping: 30 }}
       className={`text-center h-6 w-6 flex-shrink-0 rounded-full border dark:border-[#f3e2d8]  dark:shadow-[#f3e2d8] ${
-        children === "C" ? "bg-green-400" : "bg-red-400"
+        children === "C"
+          ? "bg-green-400 dark:bg-green-700  "
+          : "bg-red-400 dark:bg-red-500"
       }`}
     >
       {children}
