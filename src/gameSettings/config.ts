@@ -1,8 +1,8 @@
 import { strategies } from "./strategies";
 
 const DEFAULT_CONFIG = {
-  maxRounds: 5,
-  delay: 500,
+  maxRounds: 20,
+  delay: 1000,
   payoffMatrix: {
     CC: [3, 3],
     CD: [0, 5],

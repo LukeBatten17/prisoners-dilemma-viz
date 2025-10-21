@@ -2,9 +2,6 @@ import React, { useState, useEffect } from "react";
 import { strategies } from "../gameSettings/strategies";
 import Select from "./Select";
 import ScrollContainer from "react-indiana-drag-scroll";
-import StickmanIdle from "../assets/icons/StickmanIdle";
-import StickmanDefect from "../assets/icons/StickmanDefect";
-import StickmanCoperate from "../assets/icons/StickmanCoperate";
 import Stickman from "./Stickman";
 
 type StrategyCardProps = {
@@ -26,7 +23,7 @@ const StrategyCard: React.FC<StrategyCardProps> = ({
   delay,
   currentRound,
 }) => {
-  const [displayMove, setDisplayMove] = useState(null);
+  const [displayMove, setDisplayMove] = useState<string | null>(null);
 
   useEffect(() => {
     if (recentMove) {

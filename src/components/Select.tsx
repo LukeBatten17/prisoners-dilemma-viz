@@ -1,6 +1,16 @@
 import React from "react";
 
-const Select = ({
+interface SelectProps {
+  children: React.ReactNode;
+  name: string;
+  id: string;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  value?: string | number;
+  defaultValue?: string | number;
+  className?: string;
+}
+
+const Select: React.FC<SelectProps> = ({
   children,
   name,
   id,

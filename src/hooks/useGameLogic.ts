@@ -9,6 +9,7 @@ export function useGameLogic() {
   const [maxRounds, setMaxRounds] = useState(DEFAULT_CONFIG.maxRounds);
   const [delay, setDelay] = useState(DEFAULT_CONFIG.delay);
   const [payoff, setPayoff] = useState(null);
+  const [matchComplete, setMatchComplete] = useState(false);
 
   const [stratOneHistory, setStratOneHistory] = useState<HistoryEntry[]>([]);
   const [stratTwoHistory, setStratTwoHistory] = useState<HistoryEntry[]>([]);
@@ -22,13 +23,17 @@ export function useGameLogic() {
 
   try {
     useEffect(() => {
-      if (!isRunning || currentRound >= maxRounds) return;
+      if (currentRound >= maxRounds) {
+        setIsRunning(false);
+        setMatchComplete(true);
+        console.log("Match complete");
+        return;
+      }
+      if (!isRunning) return;
 
       const timer = setTimeout(() => {
         const move_one = strategyOne.strategy(stratOneHistory, stratTwoHistory);
         const move_two = strategyTwo.strategy(stratTwoHistory, stratOneHistory);
-        console.log("Strat 1", strategyOne.strategy);
-        console.log("Strat 2", strategyTwo.strategy);
 
         const key =
           `${move_one}${move_two}` as keyof typeof DEFAULT_CONFIG.payoffMatrix;
@@ -65,10 +70,6 @@ export function useGameLogic() {
     console.error(e);
     setIsRunning(false);
   }
-  // useEffect(() => {
-  //   console.log("History updated:", stratOneHistory);
-  //   console.log("History updated:", stratTwoHistory);
-  // }, [stratOneHistory]);
 
   const resetGame = () => {
     setIsRunning(false);
@@ -76,9 +77,8 @@ export function useGameLogic() {
     setScores({ strat_one: 0, strat_two: 0 });
     setStratOneHistory([]);
     setStratTwoHistory([]);
-    setStrategyOne(DEFAULT_CONFIG.defaultStratOne);
-    setStrategyTwo(DEFAULT_CONFIG.defaultStratTwo);
     setPayoff(null);
+    setMatchComplete(false);
   };
 
   const startGame = () => setIsRunning(true);
@@ -104,5 +104,6 @@ export function useGameLogic() {
     setStrategyOne,
     setStrategyTwo,
     payoff,
+    matchComplete,
   };
 }

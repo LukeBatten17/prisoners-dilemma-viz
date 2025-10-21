@@ -25,6 +25,7 @@ const Game = () => {
     updateMaxRounds,
     delay,
     payoff,
+    matchComplete,
   } = useGameLogic();
 
   return (
@@ -97,7 +98,13 @@ const Game = () => {
 
         {/* Chart */}
         <div className="w-full">
-          <ChartCard />
+          <ChartCard
+            strategy1={strategyOne}
+            strategy2={strategyTwo}
+            matchComplete={matchComplete}
+            scores={scores}
+            currentRound={currentRound}
+          />
         </div>
       </main>
     </div>
