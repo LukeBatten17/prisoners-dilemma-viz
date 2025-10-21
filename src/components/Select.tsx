@@ -24,7 +24,7 @@ const Select: React.FC<SelectProps> = ({
     <select
       name={name}
       id={id}
-      className={`border p-1  text-text shadow-sm dark:border-[#f3e2d8] dark:shadow-[#f3e2d8] hover:translate-px hover:shadow-none focus:outline-0 transition-all ease-in-out duration-150 ${className}`}
+      className={`border p-1   shadow-sm dark:border-[#f3e2d8] dark:shadow-[#f3e2d8] hover:translate-px hover:shadow-none focus:outline-0 transition-all ease-in-out duration-150 ${className}`}
       onChange={onChange}
       {...selectProps}
     >

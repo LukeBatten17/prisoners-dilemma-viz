@@ -38,21 +38,22 @@ const ChartCard: React.FC<ChartCardProps> = ({
   const [sortCriteria, setSortCriteria] = useState<string>("name");
 
   const handleChartClear = () => {
-    localStorage.removeItem("chartData");
-    setScoreData([
-      {
-        name: "Always Cooperate",
-        score: 0,
-        totalRounds: 0,
-        avgScore: 0,
-      },
-      {
-        name: "Always Defect",
-        score: 0,
-        totalRounds: 0,
-        avgScore: 0,
-      },
-    ]);
+    if (confirm("Are you sure you want to clear the chart data?")) {
+      setScoreData([
+        {
+          name: "Always Cooperate",
+          score: 0,
+          totalRounds: 0,
+          avgScore: 0,
+        },
+        {
+          name: "Always Defect",
+          score: 0,
+          totalRounds: 0,
+          avgScore: 0,
+        },
+      ]);
+    }
   };
 
   const handleSortData = (criteria: string) => {
@@ -146,6 +147,7 @@ const ChartCard: React.FC<ChartCardProps> = ({
             id="sort-by"
             onChange={(e) => handleSortData(e.target.value)}
             defaultValue=""
+            className="bg-background"
           >
             <option value="" disabled hidden>
               Sort by:

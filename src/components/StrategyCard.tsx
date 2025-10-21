@@ -55,7 +55,7 @@ const StrategyCard: React.FC<StrategyCardProps> = ({
           id={`strategy-${strategyNumber}`}
           value={selectedIndex >= 0 ? selectedIndex : 0}
           onChange={(e) => onStrategyChange(+e.target.value)}
-          className={`${
+          className={`text-black ${
             strategyNumber === 1 ? "bg-strategy-1" : "bg-strategy-2"
           }`}
         >

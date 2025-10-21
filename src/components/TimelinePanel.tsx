@@ -6,8 +6,8 @@ import { motion } from "motion/react";
 type TimelinePanelProps = {
   currentRound: number;
   maxRounds: number;
-  stratOneHistory: [];
-  stratTwoHistory: [];
+  stratOneHistory: any[];
+  stratTwoHistory: any[];
 };
 
 const TimelinePanel: React.FC<TimelinePanelProps> = ({
@@ -16,7 +16,7 @@ const TimelinePanel: React.FC<TimelinePanelProps> = ({
   stratOneHistory,
   stratTwoHistory,
 }) => {
-  const scrollContainerRef = useRef<any>(null);
+  const scrollContainerRef = useRef<ScrollContainer>(null);
 
   // Auto-scroll to the end when history updates
   useEffect(() => {
@@ -38,25 +38,25 @@ const TimelinePanel: React.FC<TimelinePanelProps> = ({
         </div>
 
         <ScrollContainer
-          ref={scrollContainerRef}
+          ref={scrollContainerRef as any}
           vertical={false}
           className="flex flex-col gap-1 overflow-x-auto "
         >
           <div className="flex gap-1 flex-nowrap ">
             {stratOneHistory.map((history, index) =>
               history?.move === "C" ? (
-                <TimelineChips>C</TimelineChips>
+                <TimelineChips key={index}>C</TimelineChips>
               ) : (
-                <TimelineChips>D</TimelineChips>
+                <TimelineChips key={index}>D</TimelineChips>
               )
             )}
           </div>
           <div className="flex gap-1 flex-nowrap ">
             {stratTwoHistory.map((history, index) =>
               history?.move === "C" ? (
-                <TimelineChips>C</TimelineChips>
+                <TimelineChips key={index}>C</TimelineChips>
               ) : (
-                <TimelineChips>D</TimelineChips>
+                <TimelineChips key={index}>D</TimelineChips>
               )
             )}
             <span className="w-3 "></span>
@@ -71,7 +71,11 @@ const TimelinePanel: React.FC<TimelinePanelProps> = ({
 
 export default TimelinePanel;
 
-const TimelineChips = ({ children, className = "" }) => {
+type TimelineChipsProps = {
+  children: React.ReactNode;
+  className?: string;
+};
+const TimelineChips: React.FC<TimelineChipsProps> = ({ children }) => {
   return (
     <motion.span
       initial={{ scale: 0, opacity: 0, y: 0 }}

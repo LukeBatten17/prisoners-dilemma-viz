@@ -10,6 +10,8 @@ type OptionsPanelProps = {
   isRunning: boolean;
   updateDelay: any;
   updateMaxRounds: any;
+  matchComplete: boolean;
+  setNoise: any;
 };
 
 const OptionsPanel: React.FC<OptionsPanelProps> = ({
@@ -19,6 +21,8 @@ const OptionsPanel: React.FC<OptionsPanelProps> = ({
   isRunning,
   updateDelay,
   updateMaxRounds,
+  matchComplete,
+  setNoise,
 }) => {
   return (
     <div className="h-none  border flex flex-col items-start gap-4 md:flex-row md:justify-between md:items-center md:gap-10 p-4">
@@ -31,9 +35,11 @@ const OptionsPanel: React.FC<OptionsPanelProps> = ({
           id="num-of-rounds"
           onChange={(e) => updateMaxRounds(e.target.value)}
           defaultValue={DEFAULT_CONFIG.maxRounds}
+          className="bg-background"
         >
           <option value={5}>5</option>
-          <option value={20}>20</option>
+          <option value={10}>10</option>
+          <option value={25}>25</option>
           <option value={50}>50</option>
           <option value={100}>100</option>
           <option value={200}>200</option>
@@ -41,8 +47,13 @@ const OptionsPanel: React.FC<OptionsPanelProps> = ({
         </Select>
       </div>
       <div className="flex gap-1">
-        <input type="checkbox" name="noise" value="noise" />
-        <label htmlFor="noise">noise</label>
+        <label htmlFor="noise">Noise</label>
+        <input
+          type="checkbox"
+          name="noise"
+          value="noise"
+          onChange={(e) => setNoise(e.target.checked)}
+        />
       </div>
       <div>
         <label htmlFor="num-of-rounds" className="text-lg mr-1">
@@ -53,6 +64,7 @@ const OptionsPanel: React.FC<OptionsPanelProps> = ({
           id="num-of-rounds"
           onChange={(e) => updateDelay(e.target.value)}
           defaultValue={DEFAULT_CONFIG.delay}
+          className="bg-background"
         >
           <option value={2500}>0.5x</option>
           <option value={2000}>0.75x</option>
@@ -71,6 +83,7 @@ const OptionsPanel: React.FC<OptionsPanelProps> = ({
         <Button
           className="px-6 bg-primary text-lg active:bg-primary-300 dark:active:bg-primary-400"
           onClick={() => (isRunning ? pauseGame() : startGame())}
+          disabled={matchComplete}
         >
           {isRunning ? "Pause" : "Start"}
         </Button>
