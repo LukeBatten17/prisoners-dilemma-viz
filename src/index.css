@@ -103,6 +103,18 @@
       --color-strategy-2: #ac6f08;
       /* --color-strategy-1: oklch(58.8% 0.158 241.966);
       --color-strategy-2: oklch(66.6% 0.179 58.318); */
+
+      --color-primary-50: #fef0e6;
+      --color-primary-100: #fee1cd;
+      --color-primary-200: #fcc29c;
+      --color-primary-300: #fba46a;
+      --color-primary-400: #fa8638;
+      --color-primary-500: #f96706;
+      --color-primary-600: #c75305;
+      --color-primary-700: #953e04;
+      --color-primary-800: #632903;
+      --color-primary-900: #321501;
+      --color-primary-950: #190a01;
     }
   }
 }
