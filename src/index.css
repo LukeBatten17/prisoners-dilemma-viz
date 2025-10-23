@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin '@tailwindcss/typography';
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
@@ -139,5 +140,94 @@
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+}
+
+@layer components {
+  .markdown {
+    @apply w-full max-w-4xl px-4 md:px-8 py-4 text-text space-y-6;
+  }
+
+  .markdown h1 {
+    @apply text-2xl md:text-4xl font-bold mb-2 text-center;
+  }
+
+  .markdown h2 {
+    @apply text-xl md:text-2xl font-semibold mt-8 mb-2;
+  }
+
+  .markdown table {
+    @apply border-collapse border w-full;
+  }
+
+  .markdown th,
+  .markdown td {
+    @apply border p-2 text-center;
+  }
+
+  .markdown strong {
+    @apply font-semibold;
+  }
+
+  .markdown a {
+    @apply text-text font-bold underline;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+  }
+
+  .markdown blockquote {
+    @apply italic ml-4 pl-4 border-l-4 border-[#130b06] dark:border-[#f9f1ec];
+  }
+
+  .markdown ul,
+  .markdown ol {
+    @apply pl-6 mb-4;
+  }
+
+  .markdown ol {
+    list-style-type: decimal;
+  }
+
+  .markdown li {
+    @apply mb-1;
+  }
+
+  .markdown .footnotes::before {
+    content: "";
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .markdown .footnotes ol {
+    @apply list-decimal space-y-4;
+  }
+
+  .markdown .footnotes li {
+    @apply pb-4 border-b border-[#130b06] last:border-b-0;
+  }
+
+  .dark .markdown .footnotes li {
+    @apply dark:border-[#f9f1ec];
+  }
+
+  .markdown .footnotes > :first-child {
+    display: none; /* Hides the default "Footnotes" heading */
+  }
+
+  .markdown .footnotes .data-footnote-backref {
+    display: none;
+  }
+
+  .dark .markdown {
+    @apply text-gray-100;
+  }
+
+  .dark .markdown table,
+  .dark .markdown th,
+  .dark .markdown td {
+    @apply border-gray-700;
   }
 }
