@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import { strategies } from "../gameSettings/strategies";
 import Select from "./Select";
 import ScrollContainer from "react-indiana-drag-scroll";
 import Stickman from "./Stickman";
+import { useSpring, motion } from "motion/react";
 
 type StrategyCardProps = {
   strategyNumber: number;
@@ -24,6 +25,17 @@ const StrategyCard: React.FC<StrategyCardProps> = ({
   currentRound,
 }) => {
   const [displayMove, setDisplayMove] = useState<string | null>(null);
+  const [displayScore, setDisplayScore] = useState(0);
+
+  const springConfig = useSpring(0, { bounce: 0.1, duration: delay / 2 });
+
+  springConfig.on("change", (value) => {
+    setDisplayScore(Math.round(value));
+  });
+
+  useEffect(() => {
+    springConfig.set(score);
+  }, [score]);
 
   useEffect(() => {
     if (recentMove) {
@@ -45,10 +57,9 @@ const StrategyCard: React.FC<StrategyCardProps> = ({
   const selectedIndex = strategies.findIndex((s) => s.name === strategy?.name);
 
   return (
-    <div className="flex flex-col justify-between items-center p-2 border h-full">
-      <h1 className="text-2xl font-bold mb-2 ">{`Strategy ${strategyNumber}`}</h1>
-
+    <div className="flex flex-col justify-around items-center p-2 border h-full">
       <div className="flex flex-col items-center">
+        <h1 className="text-2xl font-bold mb-2 ">{`Strategy ${strategyNumber}`}</h1>
         <Select
           name="strategy"
           id={`strategy-${strategyNumber}`}
@@ -68,7 +79,7 @@ const StrategyCard: React.FC<StrategyCardProps> = ({
           horizontal={false}
           className="h-16  overflow-y-auto scrollbar-hide"
         >
-          <p className="text-center text-sm/3.5 mt-1">
+          <p className="text-center text-sm/3.5 mt-2">
             {strategy?.description}
           </p>
         </ScrollContainer>
@@ -77,7 +88,8 @@ const StrategyCard: React.FC<StrategyCardProps> = ({
       <div>
         <Stickman displayMove={displayMove} delay={delay} />
       </div>
-      <h3 className="text-xl mt-6 font-bold">{`Score: ${score}`}</h3>
+
+      <h3 className="text-xl font-bold">{`Score: ${displayScore}`}</h3>
     </div>
   );
 };
