@@ -37,6 +37,8 @@ const ChartCard: React.FC<ChartCardProps> = ({
   const [scoreData, setScoreData] = useState<ChartData[]>([]);
   const [sortCriteria, setSortCriteria] = useState<string>("name");
 
+  const chartHeight = Math.max(400, scoreData.length * 40);
+
   const handleChartClear = () => {
     if (confirm("Are you sure you want to clear the chart data?")) {
       setScoreData([
@@ -163,7 +165,7 @@ const ChartCard: React.FC<ChartCardProps> = ({
         </div>
       </div>
 
-      <ResponsiveContainer width="100%" height={400}>
+      <ResponsiveContainer width="100%" height={chartHeight}>
         <BarChart
           data={scoreData}
           layout="vertical"

@@ -50,7 +50,7 @@ const Game = () => {
         {/* Main Content Grid */}
         <div className="flex flex-col md:flex-row gap-4 mb-4">
           {/* Strategy Card 1 */}
-          <div className="flex-1 lg:w-xs">
+          <div className="flex-1 lg:w-xs order-1 md:order-0 ">
             <StrategyCard
               strategyNumber={1}
               strategy={strategyOne}
@@ -82,7 +82,7 @@ const Game = () => {
           </div>
 
           {/* Strategy Card 2 */}
-          <div className="flex-1 lg:w-xs ">
+          <div className="flex-1 lg:w-xs order-1 md:order-0 ">
             <StrategyCard
               strategyNumber={2}
               strategy={strategyTwo}

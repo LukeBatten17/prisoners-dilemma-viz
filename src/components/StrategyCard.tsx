@@ -30,7 +30,7 @@ const StrategyCard: React.FC<StrategyCardProps> = ({
       setDisplayMove(recentMove);
 
       const timeout = setTimeout(() => {
-        setDisplayMove(null); // go back to idle after 1 second
+        setDisplayMove(null);
       }, delay * 0.5);
 
       return () => clearTimeout(timeout);
@@ -39,7 +39,6 @@ const StrategyCard: React.FC<StrategyCardProps> = ({
 
   const onStrategyChange = (index: number) => {
     const selected = strategies[index];
-    //console.log(`Strategy ${strategyNumber} changed to`, selected.name);
     setStrategy(selected);
   };
 
@@ -67,9 +66,11 @@ const StrategyCard: React.FC<StrategyCardProps> = ({
         </Select>
         <ScrollContainer
           horizontal={false}
-          className="h-18  overflow-y-auto scrollbar-hide"
+          className="h-16  overflow-y-auto scrollbar-hide"
         >
-          <p className="text-center text-sm mt-1 ">{strategy?.description}</p>
+          <p className="text-center text-sm/3.5 mt-1">
+            {strategy?.description}
+          </p>
         </ScrollContainer>
       </div>
 
