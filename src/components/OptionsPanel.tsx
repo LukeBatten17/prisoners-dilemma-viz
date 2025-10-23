@@ -46,7 +46,7 @@ const OptionsPanel: React.FC<OptionsPanelProps> = ({
           <option value={Math.floor(Math.random() * 200)}>Random</option>
         </Select>
       </div>
-      <div className="flex gap-1">
+      <div className="flex justify-center items-center gap-1">
         <label htmlFor="noise">Noise</label>
         <input
           type="checkbox"

@@ -40,7 +40,7 @@ const TimelinePanel: React.FC<TimelinePanelProps> = ({
         <ScrollContainer
           ref={scrollContainerRef as any}
           vertical={false}
-          className="flex flex-col gap-1 overflow-x-auto "
+          className="flex flex-col gap-1 overflow-x-auto overflow-y-visible"
         >
           <div className="flex gap-1 flex-nowrap ">
             {stratOneHistory.map((history, index) =>
