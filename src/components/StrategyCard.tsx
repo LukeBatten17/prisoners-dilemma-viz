@@ -3,7 +3,7 @@ import { strategies } from "../gameSettings/strategies";
 import Select from "./Select";
 import ScrollContainer from "react-indiana-drag-scroll";
 import Stickman from "./Stickman";
-import { useSpring, motion } from "motion/react";
+import { useSpring } from "motion/react";
 
 type StrategyCardProps = {
   strategyNumber: number;

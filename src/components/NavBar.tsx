@@ -5,7 +5,6 @@ import { GitHub } from "../assets/icons/GitHub";
 import { DarkMode } from "../assets/icons/DarkMode";
 import { LightMode } from "../assets/icons/LightMode";
 import { NavLink, Link } from "react-router";
-import Button from "../components/Button";
 
 const NavBar = () => {
   const { theme, toggleTheme } = useTheme();
