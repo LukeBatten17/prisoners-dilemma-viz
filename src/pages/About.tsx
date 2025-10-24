@@ -1,4 +1,3 @@
-import React from "react";
 import NavBar from "../components/NavBar";
 import AboutContent from "../content/about.md?raw";
 import ReactMarkdown from "react-markdown";
