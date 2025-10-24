@@ -144,6 +144,9 @@ const ChartCard: React.FC<ChartCardProps> = ({
       <div className="flex flex-col md:flex-row md:justify-between md:gap-2 mb-4">
         <h1 className="font-bold text-lg">Strategy Performance</h1>
         <div className="flex flex-col md:flex-row gap-2 w-fit">
+          <label htmlFor={`sort-by`} className="sr-only">
+            {`Sort by:`}
+          </label>
           <Select
             name="sort-by"
             id="sort-by"

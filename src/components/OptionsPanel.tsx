@@ -36,6 +36,7 @@ const OptionsPanel: React.FC<OptionsPanelProps> = ({
           onChange={(e) => updateMaxRounds(e.target.value)}
           defaultValue={DEFAULT_CONFIG.maxRounds}
           className="bg-background"
+          ariaLabel="number of rounds"
         >
           <option value={5}>5</option>
           <option value={10}>10</option>
@@ -50,21 +51,22 @@ const OptionsPanel: React.FC<OptionsPanelProps> = ({
         <label htmlFor="noise">Noise</label>
         <input
           type="checkbox"
-          name="noise"
+          id="noise"
           value="noise"
           onChange={(e) => setNoise(e.target.checked)}
         />
       </div>
       <div>
-        <label htmlFor="num-of-rounds" className="text-lg mr-1">
+        <label htmlFor="speed-select" className="text-lg mr-1">
           Speed
         </label>
         <Select
-          name="rounds"
-          id="num-of-rounds"
+          name="speed"
+          id="speed-select"
           onChange={(e) => updateDelay(e.target.value)}
           defaultValue={DEFAULT_CONFIG.delay}
           className="bg-background"
+          ariaLabel="Speed Select"
         >
           <option value={2500}>0.5x</option>
           <option value={2000}>0.75x</option>
@@ -77,6 +79,7 @@ const OptionsPanel: React.FC<OptionsPanelProps> = ({
         <Button
           onClick={resetGame}
           className="px-4 text-lg active:bg-background-100 dark:active:bg-background-800"
+          ariaLabel="Reset"
         >
           Reset
         </Button>
@@ -84,6 +87,7 @@ const OptionsPanel: React.FC<OptionsPanelProps> = ({
           className="px-6 bg-primary text-lg active:bg-primary-300 dark:active:bg-primary-400"
           onClick={() => (isRunning ? pauseGame() : startGame())}
           disabled={matchComplete}
+          ariaLabel="Start"
         >
           {isRunning ? "Pause" : "Start"}
         </Button>

@@ -60,6 +60,9 @@ const StrategyCard: React.FC<StrategyCardProps> = ({
     <div className="flex flex-col justify-around items-center p-2 border h-full">
       <div className="flex flex-col items-center">
         <h1 className="text-2xl font-bold mb-2 ">{`Strategy ${strategyNumber}`}</h1>
+        <label htmlFor={`strategy-${strategyNumber}`} className="sr-only">
+          {`Select strategy ${strategyNumber}`}
+        </label>
         <Select
           name="strategy"
           id={`strategy-${strategyNumber}`}
@@ -89,7 +92,7 @@ const StrategyCard: React.FC<StrategyCardProps> = ({
         <Stickman displayMove={displayMove} delay={delay} />
       </div>
 
-      <h3 className="text-xl font-bold">{`Score: ${displayScore}`}</h3>
+      <p className="text-xl font-bold">{`Score: ${displayScore}`}</p>
     </div>
   );
 };
