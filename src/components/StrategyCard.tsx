@@ -1,4 +1,4 @@
-import React, { useState, useEffect, use } from "react";
+import React, { useState, useEffect } from "react";
 import { strategies } from "../gameSettings/strategies";
 import Select from "./Select";
 import ScrollContainer from "react-indiana-drag-scroll";
