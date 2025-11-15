@@ -42,7 +42,6 @@ const Game = () => {
             isRunning={isRunning}
             updateDelay={updateDelay}
             updateMaxRounds={updateMaxRounds}
-            matchComplete={matchComplete}
             setNoise={setNoise}
           />
         </div>

@@ -10,7 +10,6 @@ type OptionsPanelProps = {
   isRunning: boolean;
   updateDelay: any;
   updateMaxRounds: any;
-  matchComplete: boolean;
   setNoise: any;
 };
 
@@ -21,7 +20,6 @@ const OptionsPanel: React.FC<OptionsPanelProps> = ({
   isRunning,
   updateDelay,
   updateMaxRounds,
-  matchComplete,
   setNoise,
 }) => {
   return (
