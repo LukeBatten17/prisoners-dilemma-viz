@@ -112,7 +112,7 @@
   }
 
   .markdown li {
-    @apply mb-1;
+    @apply mb-1 list-disc;
   }
 
   .markdown .footnotes::before {

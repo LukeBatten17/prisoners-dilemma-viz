@@ -4,22 +4,85 @@ An interactive demonstration of Prisoner's Dilemma. Test strategies against each
 
 ## **What is the Prisoner’s Dilemma?**
 
-Prisoner's Dilemma is a classic example used in Game Theory. What is Game Theory? Game theory is the study of strategic decision-making in situations where the outcome depends on the choices of all participants. In simple terms, it's a way to analyze situations with multiple "players" who must make a choice, like a game of chess or two companies competing on price, where one person's action affects the outcome for everyone.
+Prisoners Dilemma is a classic example used in Game Theory. What is Game Theory you might ask. Game theory is the study of strategic decision-making in situations where the outcome depends on the choices of all participants. In simple terms, it’s about understanding what choice is best when someone else’s choice affects your result, like a game of chess or two companies competing on price.
 
-For this example, we have two players/strategies. A strategy wins by accumulating the most points. In each round, a strategy will choose whether to cooperate or defect. We can represent the payoff in a 2x2 matrix. The payoff is represented as x/y, where Strategy 1 is x and Strategy 2 is y. Thus, we can now calculate the payoff for a round
+With that definition out of the way; Prisoners Dilemma is used to help demonstrate game theory.
 
-Ex: Strategy 1 cooperates and Strategy 2 cooperates, then each gets 3 points.
+In this game, there are two players. Every round, each player chooses one of two actions:
 
-Ex: Strategy 1 defects and Strategy 2 cooperates; then Strategy 1 gets 5 points and Strategy 2 gets 0 points (5/0).
+- Cooperate (C)
+- Defect (D)
+
+Each combination of choices gives both players a certain number of points, which we show using a payoff matrix.
+
+**The Payoff Matrix**
+
+Payoffs are written as x / y, where:
+
+- x = points for Strategy 1
+- y = points for Strategy 2
+
+Here’s the full matrix:
 
 |               | Cooperate | Defect |
 | :------------ | :-------- | :----- |
 | **Cooperate** | 3/3       | 0/5    |
 | **Defect**    | 5/0       | 1/1    |
 
-Okay, now let's play one round between me and you. What's the best choice for you to make in this one-round match? I’ll give you a few seconds to think… did you say defect? If you did, that's a smart move. You probably thought, “_if I choose to cooperate, then he might defect and I would be left with nothing, so defecting guarantees me at least one point_”. Well, guess what… I thought the same thing and also defected. So now we're both given one point.
+Let’s break down two examples:
 
-Now let's play again, however we will play for let's say 10 rounds. So what's your first move? Remember, we want to maximize our points. Okay, I choose to cooperate. What did you choose? Let's say you were nice and also cooperated. That gives us both 3 points. Next round, I choose to cooperate this round again. Maybe this time you think well, he seems to be nice, so this time I’ll take advantage of him and defect. Damn, you now have 8 points, and I only have 3 points. Okay, next round, well, since you screwed me last time, I'll do the same move you did and defect. Maybe you also thought he’ll probably defect since I did last time, and now it's 9-4. And the game continues since we can’t trust each other, we both defect for the rest of the match, giving the total score of 16-11. See how introducing more iterations makes the choices ever more important. If we just always defect, we won't get close to the maximum points we ought to if we had cooperated. Maybe now you can see how important it is to study this.
+- If both players cooperate, each gets 3 points.
+- If you defect while the opponent cooperates, you get 5 points and they get 0.
+
+**Single-Round Games Lead to Defection**
+
+Okay, now lets play one round between me and you.
+Let's say you’re thinking extra smart today:
+“If I cooperate and they defect, I get nothing… but if I defect, the worst I get is 1.”
+
+So you defect.
+
+And I’m thinking the same thing.
+
+So I defect too.
+
+And we both walk away with 1 point, even though cooperating would have given us 3 points each.
+
+This is the core tension of the Prisoner’s Dilemma:
+
+individually smart choices lead to worse outcomes for both players.
+
+**Multiple Rounds Change Everything**
+
+Now image we play 10 rounds, and not just one. What's your first move?Remember, we want to maximize our points.
+
+Round 1:
+
+&nbsp; We both cooperate → both get 3 points.
+
+Round 2:
+
+&nbsp;You jump to 8 points, I stay at 3.
+
+Round 3:
+
+&nbsp;I retaliate and defect →
+
+&nbsp;You expect it and defect too → you go to 9, I go to 4.
+
+From here, distrust sets in.
+
+We both defect repeatedly → 1-point gains each round.
+
+By the end, the score might look like:
+
+You: 16 Me: 11
+
+See how introducing more iterations makes the choices ever more important. If we just always defect, we won't get close to the maximum points we ought to if we had cooperated. Maybe now you can see how important it is to study this.
+
+- Short-term greed can break long-term cooperation.
+- Always defecting never earns the maximum possible points.
+- Multiple rounds create opportunities for trust, retaliation, forgiveness, and strategy.
 
 ## **History/Application**
 
