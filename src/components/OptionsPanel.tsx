@@ -86,7 +86,6 @@ const OptionsPanel: React.FC<OptionsPanelProps> = ({
         <Button
           className="px-6 bg-primary text-lg active:bg-primary-300 dark:active:bg-primary-400"
           onClick={() => (isRunning ? pauseGame() : startGame())}
-          disabled={matchComplete}
           ariaLabel="Start"
         >
           {isRunning ? "Pause" : "Start"}

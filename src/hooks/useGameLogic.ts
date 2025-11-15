@@ -22,8 +22,8 @@ export function useGameLogic() {
     DEFAULT_CONFIG.defaultStratTwo
   );
 
-  try {
-    useEffect(() => {
+  useEffect(() => {
+    try {
       if (currentRound >= maxRounds) {
         setIsRunning(false);
         setMatchComplete(true);
@@ -73,20 +73,20 @@ export function useGameLogic() {
         const timer = setTimeout(playRound, delay);
         return () => clearTimeout(timer);
       }
-    }, [
-      isRunning,
-      currentRound,
-      stratOneHistory,
-      stratTwoHistory,
-      strategyOne,
-      strategyTwo,
-      delay,
-      maxRounds,
-    ]);
-  } catch (e) {
-    console.error(e);
-    setIsRunning(false);
-  }
+    } catch (e) {
+      console.error(e);
+      setIsRunning(false);
+    }
+  }, [
+    isRunning,
+    currentRound,
+    stratOneHistory,
+    stratTwoHistory,
+    strategyOne,
+    strategyTwo,
+    delay,
+    maxRounds,
+  ]);
 
   const resetGame = () => {
     setIsRunning(false);
@@ -98,7 +98,12 @@ export function useGameLogic() {
     setMatchComplete(false);
   };
 
-  const startGame = () => setIsRunning(true);
+  const startGame = () => {
+    if (currentRound >= maxRounds) {
+      resetGame();
+    }
+    setIsRunning(true);
+  };
   const pauseGame = () => setIsRunning(false);
   const updateMaxRounds = (rounds: number) => setMaxRounds(rounds);
   const updateDelay = (newDelay: number) => setDelay(newDelay);
