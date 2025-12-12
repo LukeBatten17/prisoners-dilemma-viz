@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 const About = () => {
   return (
-    <div className=" flex flex-col bg-background min-h-screen">
+    <div className="flex flex-col bg-background min-h-screen bg-pattern ">
       <NavBar />
       <main className="markdown mx-auto">
         <ReactMarkdown remarkPlugins={[remarkGfm]}>

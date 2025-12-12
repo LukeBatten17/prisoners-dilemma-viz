@@ -30,7 +30,7 @@ const Game = () => {
   } = useGameLogic();
 
   return (
-    <div className="flex flex-col bg-background w-full min-h-screen text-text">
+    <div className="flex flex-col bg-background bg-pattern w-full min-h-screen text-text">
       <NavBar />
       <main className="flex flex-col justify-center items-center mx-auto p-4 pb-8 max-w-6xl">
         {/* Options Panel */}
