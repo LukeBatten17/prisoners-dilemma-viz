@@ -57,7 +57,7 @@ const StrategyCard: React.FC<StrategyCardProps> = ({
   const selectedIndex = strategies.findIndex((s) => s.name === strategy?.name);
 
   return (
-    <div className="flex flex-col justify-around items-center p-2 border h-full">
+    <div className="bg-background flex flex-col justify-around items-center p-2 border h-full">
       <div className="flex flex-col items-center">
         <h1 className="text-2xl font-bold mb-2 ">{`Strategy ${strategyNumber}`}</h1>
         <label htmlFor={`strategy-${strategyNumber}`} className="sr-only">

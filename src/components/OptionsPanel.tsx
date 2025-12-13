@@ -23,7 +23,7 @@ const OptionsPanel: React.FC<OptionsPanelProps> = ({
   setNoise,
 }) => {
   return (
-    <div className="h-none  border flex flex-col items-start gap-4 md:flex-row md:justify-between md:items-center md:gap-10 p-4">
+    <div className="bg-background h-none  border flex flex-col items-start gap-4 md:flex-row md:justify-between md:items-center md:gap-10 p-4">
       <div>
         <label htmlFor="num-of-rounds" className="text-lg mr-1">
           # of Rounds

@@ -25,7 +25,7 @@
   --text-shadow-md: 2px 2px 0px #000000;
   --text-shadow-lg: 3px 3px 0px #000000;
 
-  --pattern: url("data:image/svg+xml;utf8,<svg width='180' height='184' viewBox='0%200%20180%20184' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M 90 182.751 L 178.779 92 L 90 1.24913 V 0 L 180 92 L 90 184 V 182.751 Z' fill='rgba(11, 6, 4, 0.05)'/><path d='M 90 182.751 L 1.22054 92 L 90 1.24913 V 0 L 0 92 L 90 184 V 182.751 Z' fill='rgba(11, 6, 4, 0.05)'/><path d='M 89.476 1.76614 L 89.9995 1.24657 L 90.5229 1.76614 V 182.26 L 90.0034 182.774 L 89.5 182.26 L 89.476 1.76614 Z' fill='rgba(11, 6, 4, 0.05)'/></svg>");
+  --pattern: url("data:image/svg+xml;utf8,<svg width='90' height='92'  viewBox='0%200%20180%20184' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M 90 182.751 L 178.779 92 L 90 1.24913 V 0 L 180 92 L 90 184 V 182.751 Z' fill='rgba(11, 6, 4, 0.08)'/><path d='M 90 182.751 L 1.22054 92 L 90 1.24913 V 0 L 0 92 L 90 184 V 182.751 Z' fill='rgba(11, 6, 4, 0.08)'/><path d='M 89.476 1.76614 L 89.9995 1.24657 L 90.5229 1.76614 V 182.26 L 90.0034 182.774 L 89.5 182.26 L 89.476 1.76614 Z' fill='rgba(11, 6, 4, 0.08)'/></svg>");
 }
 
 @layer theme {
@@ -44,7 +44,7 @@
       --color-strategy-1: oklch(58.8% 0.158 241.966);
       --color-strategy-2: oklch(76.9% 0.188 70.08);
 
-      --pattern: url("data:image/svg+xml;utf8,<svg width='180' height='184' viewBox='0%200%20180%20184' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M 90 182.751 L 178.779 92 L 90 1.24913 V 0 L 180 92 L 90 184 V 182.751 Z' fill='rgba(77, 57, 50, 0.2)'/><path d='M 90 182.751 L 1.22054 92 L 90 1.24913 V 0 L 0 92 L 90 184 V 182.751 Z' fill='rgba(77, 57, 50, 0.2)'/><path d='M 89.476 1.76614 L 89.9995 1.24657 L 90.5229 1.76614 V 182.26 L 90.0034 182.774 L 89.5 182.26 L 89.476 1.76614 Z' fill='rgba(77, 57, 50, 0.2)'/></svg>");
+      --pattern: url("data:image/svg+xml;utf8,<svg width='90' height='92' viewBox='0%200%20180%20184' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M 90 182.751 L 178.779 92 L 90 1.24913 V 0 L 180 92 L 90 184 V 182.751 Z' fill='rgba(77, 57, 50, 0.4)'/><path d='M 90 182.751 L 1.22054 92 L 90 1.24913 V 0 L 0 92 L 90 184 V 182.751 Z' fill='rgba(77, 57, 50, 0.4)'/><path d='M 89.476 1.76614 L 89.9995 1.24657 L 90.5229 1.76614 V 182.26 L 90.0034 182.774 L 89.5 182.26 L 89.476 1.76614 Z' fill='rgba(77, 57, 50, 0.4)'/></svg>");
     }
   }
 }

@@ -30,7 +30,7 @@ const TimelinePanel: React.FC<TimelinePanelProps> = ({
   }, [stratOneHistory.length, stratTwoHistory.length]);
 
   return (
-    <div className="border flex flex-col gap-2">
+    <div className="bg-background border flex flex-col gap-2">
       <div className="flex justify-start align-center gap-2 p-2">
         <div className="flex flex-col gap-1.5  text-nowrap">
           <p>Strategy 1: </p>

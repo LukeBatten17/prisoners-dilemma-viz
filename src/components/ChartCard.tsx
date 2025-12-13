@@ -140,7 +140,7 @@ const ChartCard: React.FC<ChartCardProps> = ({
   }, [matchComplete]);
 
   return (
-    <div className="border w-full overflow-x-auto p-2">
+    <div className="bg-background border w-full overflow-x-auto p-2">
       <div className="flex flex-col md:flex-row md:justify-between md:gap-2 mb-4">
         <h1 className="font-bold text-lg">Strategy Performance</h1>
         <div className="flex flex-col md:flex-row gap-2 w-fit">

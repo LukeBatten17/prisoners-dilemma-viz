@@ -27,7 +27,7 @@ const PayoffMatrix: React.FC<PayoffMatrixProps> = ({
     return highlight === cellKey ? "animate-pulse brightness-150" : "";
   };
   return (
-    <div className="border h-full pb-2">
+    <div className="bg-background border h-full pb-2 ">
       <h1 className="text-lg text-text font-bold px-2">Payoff Matrix</h1>
       <div className="flex justify-center items-center">
         <svg
