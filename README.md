@@ -2,7 +2,8 @@
 
 An interactive web-based simulation for exploring strategies in the Iterated Prisoner’s Dilemma.
 
-Website: https://prisoners-dilemma-visualized.com/ (/website_ss.png)
+Website: https://prisoners-dilemma-visualized.com/
+![Website Screenshot](./public/website_ss.png)
 
 ## Features
 
