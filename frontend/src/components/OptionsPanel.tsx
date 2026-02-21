@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../components/Button";
+import Button from "./Button";
 import DEFAULT_CONFIG from "../gameSettings/config";
 import Select from "./Select";
 

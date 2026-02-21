@@ -1,4 +1,4 @@
-import type { Strategy } from "../gameSettings/types";
+import type { Strategy } from "./types";
 
 export const AlwaysCooperate: Strategy = {
   name: "Always Cooperate",
