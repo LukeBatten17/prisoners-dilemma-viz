@@ -44,6 +44,9 @@ public class Match {
     @Column(nullable = false)
     private int totalRounds;
 
+    @Column(nullable = false)
+    private boolean noise;
+
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private LocalDateTime playedAt;
