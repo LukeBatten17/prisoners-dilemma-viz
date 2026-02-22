@@ -27,7 +27,7 @@ public class Round {
 
     @ManyToOne
     @JoinColumn(name = "match_id", nullable = false)
-    private Match Match;
+    private Match match;
 
     @Column(nullable = false)
     private int roundNumber;
