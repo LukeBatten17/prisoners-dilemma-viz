@@ -18,7 +18,7 @@ import com.prisoners_dilemma.api.services.MatchService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api/matches")
 @RequiredArgsConstructor
 public class MatchController {
     private final MatchService matchService;
