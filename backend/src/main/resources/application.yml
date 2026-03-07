@@ -1,4 +1,7 @@
 spring:
+  flyway:
+    clean-on-validation-error: true
+    clean-disabled: false
   datasource:
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
