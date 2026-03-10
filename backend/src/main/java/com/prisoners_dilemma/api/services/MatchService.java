@@ -4,8 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.prisoners_dilemma.api.dtos.MatchRequest;
-import com.prisoners_dilemma.api.dtos.MatchResponse;
+import com.prisoners_dilemma.api.dtos.CreateMatchRequestDTO;
+import com.prisoners_dilemma.api.dtos.MatchResponseDTO;
+import com.prisoners_dilemma.api.dtos.RoundDTO;
 import com.prisoners_dilemma.api.entities.Match;
 import com.prisoners_dilemma.api.entities.Move;
 import com.prisoners_dilemma.api.entities.Round;
@@ -25,16 +26,16 @@ public class MatchService {
     private final StrategyService strategyService;
 
     @Transactional
-    public MatchResponse saveMatch(MatchRequest request) {
-        Strategy stratOne = strategyService.getByName(request.strategyOneName());
-        Strategy stratTwo = strategyService.getByName(request.strategyTwoName());
-        Strategy winner = strategyService.getByName(request.winner());
+    public MatchResponseDTO saveMatch(CreateMatchRequestDTO request) {
+        Strategy strategyOne = strategyService.getById(request.strategyOneId());
+        Strategy strategyTwo = strategyService.getById(request.strategyTwoId());
+        Strategy winner = strategyService.getById(request.winnerId());
 
         Match match = Match.builder()
-            .stratOne(stratOne)
-            .stratTwo(stratTwo)
-            .stratOnePoints(request.stratOnePoints())
-            .stratTwoPoints(request.stratTwoPoints())
+            .strategyOne(strategyOne)
+            .strategyTwo(strategyTwo)
+            .strategyOnePoints(request.strategyOnePoints())
+            .strategyTwoPoints(request.strategyTwoPoints())
             .totalRounds(request.totalRounds())
             .winner(winner)
             .noise(request.noise())
@@ -46,38 +47,66 @@ public class MatchService {
             .map(r -> Round.builder()
                 .match(saved)
                 .roundNumber(r.roundNumber())
-                .stratOneMove(Move.valueOf(r.stratOneMove()))
-                .stratTwoMove(Move.valueOf(r.stratTwoMove()))
-                .stratOnePoints(r.stratOnePoints())
-                .stratTwoPoints(r.stratTwoPoints())
+                .strategyOneMove(Move.valueOf(r.strategyOneMove()))
+                .strategyTwoMove(Move.valueOf(r.strategyTwoMove()))
+                .strategyOnePoints(r.strategyOnePoints())
+                .strategyTwoPoints(r.strategyTwoPoints())
+                .strategyOneAffectedByNoise(r.strategyOneAffectedByNoise())
+                .strategyTwoAffectedByNoise(r.strategyTwoAffectedByNoise())
                 .build())
             .toList();
 
         roundRepository.saveAll(rounds);
 
-        return new MatchResponse(            
+        List<RoundDTO> roundDTOs = rounds.stream()
+            .map(r -> new RoundDTO(
+                r.getRoundNumber(),
+                r.getStrategyOneMove().name(),
+                r.getStrategyTwoMove().name(),
+                r.getStrategyOnePoints(),
+                r.getStrategyTwoPoints(),
+                r.isStrategyOneAffectedByNoise(),
+                r.isStrategyTwoAffectedByNoise()
+            ))
+            .toList();
+
+        return new MatchResponseDTO(
             saved.getId(),
-            stratOne.getName(),
-            stratTwo.getName(),
-            saved.getStratOnePoints(),
-            saved.getStratTwoPoints(),
+            strategyOne.getId(),
+            strategyTwo.getId(),
+            saved.getStrategyOnePoints(),
+            saved.getStrategyTwoPoints(),
             saved.getTotalRounds(),
             winner.getName(),
             saved.isNoise(),
+            roundDTOs,
             saved.getPlayedAt()
         );
     }
-    public List<MatchResponse> getAllMatches() {
+
+    @Transactional
+    public List<MatchResponseDTO> getAllMatches() {
         return matchRepository.findAll().stream()
-            .map(m -> new MatchResponse(
+            .map(m -> new MatchResponseDTO(
                 m.getId(),
-                m.getStratOne().getName(),
-                m.getStratTwo().getName(),
-                m.getStratOnePoints(),
-                m.getStratTwoPoints(),
+                m.getStrategyOne().getId(),
+                m.getStrategyTwo().getId(),
+                m.getStrategyOnePoints(),
+                m.getStrategyTwoPoints(),
                 m.getTotalRounds(),
                 m.getWinner().getName(),
                 m.isNoise(),
+                m.getRounds().stream()
+                    .map(r -> new RoundDTO(
+                        r.getRoundNumber(),
+                        r.getStrategyOneMove().name(),
+                        r.getStrategyTwoMove().name(),
+                        r.getStrategyOnePoints(),
+                        r.getStrategyTwoPoints(),
+                        r.isStrategyOneAffectedByNoise(),
+                        r.isStrategyTwoAffectedByNoise()
+                    ))
+                    .toList(),
                 m.getPlayedAt()
             ))
             .toList();

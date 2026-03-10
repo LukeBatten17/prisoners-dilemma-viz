@@ -34,17 +34,22 @@ public class Round {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Move stratOneMove;
+    private Move strategyOneMove;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Move stratTwoMove;
+    private Move strategyTwoMove;
 
     @Column(nullable = false)
-    private int stratOnePoints;
+    private int strategyOnePoints;
 
     @Column(nullable = false)
-    private int stratTwoPoints;    
+    private int strategyTwoPoints; 
+    
+    @Builder.Default
+    private boolean strategyOneAffectedByNoise = false;
 
+    @Builder.Default
+    private boolean strategyTwoAffectedByNoise = false;
 
 }

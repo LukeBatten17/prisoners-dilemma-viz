@@ -18,8 +18,8 @@ public class StrategyService {
         return strategyRepository.findAll();
     }
 
-    public Strategy getByName(String name) {
-        return strategyRepository.findByName(name)
-            .orElseThrow(() -> new RuntimeException("Strategy not found: " + name));
+    public Strategy getById(String id) {
+        return strategyRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Strategy not found: " + id));
     }
 }

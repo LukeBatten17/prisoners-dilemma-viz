@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.prisoners_dilemma.api.dtos.MatchRequest;
-import com.prisoners_dilemma.api.dtos.MatchResponse;
+import com.prisoners_dilemma.api.dtos.CreateMatchRequestDTO;
+import com.prisoners_dilemma.api.dtos.MatchResponseDTO;
 import com.prisoners_dilemma.api.services.MatchService;
 
 import lombok.RequiredArgsConstructor;
@@ -24,12 +24,12 @@ public class MatchController {
     private final MatchService matchService;
 
     @PostMapping
-    public ResponseEntity<MatchResponse> saveMatch(@RequestBody @Validated MatchRequest request){
+    public ResponseEntity<MatchResponseDTO> saveMatch(@RequestBody @Validated CreateMatchRequestDTO request){
         return ResponseEntity.status(HttpStatus.CREATED).body(matchService.saveMatch(request));
     }
 
     @GetMapping
-    public ResponseEntity<List<MatchResponse>> getAllMatches(){
+    public ResponseEntity<List<MatchResponseDTO>> getAllMatches(){
         return ResponseEntity.ok(matchService.getAllMatches());
     }
 }

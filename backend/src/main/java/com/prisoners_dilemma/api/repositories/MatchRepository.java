@@ -8,6 +8,6 @@ import com.prisoners_dilemma.api.entities.Match;
 import com.prisoners_dilemma.api.entities.Strategy;
 
 public interface MatchRepository extends JpaRepository<Match, Long>{
-        List<Match> findByStratOneOrStratTwo(Strategy stratOne, Strategy stratTwo);
+        List<Match> findByStrategyOneOrStrategyTwo(Strategy strategyOne, Strategy strategyTwo);
 
 }
