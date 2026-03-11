@@ -1,7 +1,7 @@
 spring:
   docker:
     compose:
-      file: ../compose.yaml
+      file: ./compose.yaml
   datasource:
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
