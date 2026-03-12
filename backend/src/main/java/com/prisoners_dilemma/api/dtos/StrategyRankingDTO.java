@@ -7,6 +7,7 @@ public record StrategyRankingDTO(
     int totalRounds,
     int wins,
     int losses,
+    int draws,
     double winRate,
     int totalPoints,
     double avgPointsPerMatch

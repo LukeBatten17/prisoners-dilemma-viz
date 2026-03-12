@@ -31,16 +31,16 @@ const MatchCard: React.FC<{ match: RecentMatch }> = ({ match }) => {
       </div>
       <div className="flex gap-2 text-text">
         <div
-          className={`flex flex-col items-center font-semibold ${match.winner === match.strategyOneId ? "text-green-500" : "text-red-500"}`}
+          className={`flex flex-col items-center font-semibold ${match.winner === match.strategyOneName ? "text-green-500" : "text-red-500"}`}
         >
-          <span>{match.strategyOneId}</span>
+          <span>{match.strategyOneName}</span>
           <span>{match.strategyOnePoints}</span>
         </div>
         -
         <div
-          className={`flex flex-col items-center font-semibold ${match.winner === match.strategyTwoId ? "text-green-500" : "text-red-500"}`}
+          className={`flex flex-col items-center font-semibold ${match.winner === match.strategyTwoName ? "text-green-500" : "text-red-500"}`}
         >
-          <span>{match.strategyTwoId}</span>
+          <span>{match.strategyTwoName}</span>
           <span>{match.strategyTwoPoints}</span>
         </div>
       </div>

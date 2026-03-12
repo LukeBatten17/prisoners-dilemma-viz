@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS matches (
     total_rounds INT NOT NULL CHECK (total_rounds > 0),
     noise BOOLEAN NOT NULL DEFAULT FALSE,
     played_at TIMESTAMP NOT NULL DEFAULT NOW(),
-    winner_id VARCHAR(120) NOT NULL,
+    winner_id VARCHAR(120),
     CONSTRAINT fk_match_strategy_one FOREIGN KEY (strategy_one_id) REFERENCES strategies(id),
     CONSTRAINT fk_match_strategy_two FOREIGN KEY (strategy_two_id) REFERENCES strategies(id),
     CONSTRAINT fk_match_winner FOREIGN KEY (winner_id) REFERENCES strategies(id)

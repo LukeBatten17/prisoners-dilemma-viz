@@ -4,5 +4,6 @@ public record LeaderboardSummary(
     int totalMatches,
     int totalRounds,
     String topStrategy,
+    int topStrategyWins,
     int avgPointsPerMatch
 ) {}

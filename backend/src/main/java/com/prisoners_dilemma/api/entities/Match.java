@@ -58,8 +58,9 @@ public class Match {
     @Column(nullable = false, updatable = false)
     private LocalDateTime playedAt;
 
+    // Winner can be null in case of a tie
     @ManyToOne
-    @JoinColumn(name = "winner_id", nullable = false)
+    @JoinColumn(name = "winner_id", nullable = true)
     private Strategy winner;
 
     @OneToMany(mappedBy = "match", cascade = CascadeType.ALL)

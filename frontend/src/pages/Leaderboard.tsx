@@ -28,22 +28,22 @@ const Leaderboard = () => {
             <Card
               title="Top Strategy"
               data={data?.summary?.topStrategy || "Loading..."}
-              subtext="...Win Rate"
+              subtext={`${data?.summary?.topStrategyWins ?? "Loading..."} wins`}
             />
             <Card
               title="Total Matches"
               data={data?.summary?.totalMatches || "Loading..."}
-              subtext="...Win Rate"
+              subtext="across all matches"
             />
             <Card
               title="Total Rounds"
               data={data?.summary?.totalRounds || "Loading..."}
-              subtext="...Win Rate"
+              subtext="across all matches"
             />
             <Card
               title="Average Points per Match"
               data={data?.summary?.avgPointsPerMatch || "Loading..."}
-              subtext="...Win Rate"
+              subtext="across all strategies"
             />
           </div>
           <div>

@@ -25,12 +25,13 @@ export interface SummaryData {
   totalMatches: number;
   totalRounds: number;
   avgPointsPerMatch: number;
+  topStrategyWins: number;
 }
 
 export interface RecentMatch {
   id: string;
-  strategyOneId: string;
-  strategyTwoId: string;
+  strategyOneName: string;
+  strategyTwoName: string;
   strategyOnePoints: number;
   strategyTwoPoints: number;
   totalRounds: number;
