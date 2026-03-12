@@ -13,6 +13,7 @@
   "dependencies": {
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.1.14",
+    "@tanstack/react-table": "^8.21.3",
     "lucide-react": "^0.545.0",
     "motion": "^12.23.24",
     "react": "^19.1.1",

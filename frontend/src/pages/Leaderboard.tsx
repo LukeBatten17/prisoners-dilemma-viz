@@ -23,8 +23,8 @@ const Leaderboard = () => {
         <h1 className="text-4xl font-bold mb-3 text-left uppercase w-full">
           Leaderboard
         </h1>
-        <div className="flex flex-col">
-          <div className="flex flex-col space-y-2 md:flex-row  md:space-y-0 md:space-x-4 text-text">
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3 md:flex-row text-text">
             <Card
               title="Top Strategy"
               data={data?.summary?.topStrategy || "Loading..."}
@@ -47,10 +47,10 @@ const Leaderboard = () => {
             />
           </div>
           <div>
-            <RankingsTable />
+            <RankingsTable data={data?.rankings ?? []} />
           </div>
           <div>
-            <RecentMatches />
+            <RecentMatches data={data?.recentMatches ?? []} />
           </div>
         </div>
       </main>

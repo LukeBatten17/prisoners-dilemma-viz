@@ -15,33 +15,39 @@ export interface Strategy {
 }
 
 export interface LeaderboardData {
-  summary: {
-    totalMatches: number;
-    topStrategy: string;
-    totalRounds: number;
-    avgPointsPerMatch: number;
-  };
-  recentMatches: {
-    id: string;
-    strategyOneId: string;
-    strategyTwoId: string;
-    strategyOnePoints: number;
-    strategyTwoPoints: number;
-    totalRounds: number;
-    winner: string;
-    noise: boolean;
-    rounds: HistoryEntry[];
-    playedAt: string;
-  }[];
-  rankings: {
-    rank: number;
-    strategyName: string;
-    totalMatches: number;
-    totalPoints: number;
-    avgPointsPerMatch: number;
-    wins: number;
-    losses: number;
-    draws?: number;
-    winRate: number;
-  }[];
+  summary: SummaryData;
+  recentMatches: RecentMatch[];
+  rankings: Ranking[];
+}
+
+export interface SummaryData {
+  topStrategy: string;
+  totalMatches: number;
+  totalRounds: number;
+  avgPointsPerMatch: number;
+}
+
+export interface RecentMatch {
+  id: string;
+  strategyOneId: string;
+  strategyTwoId: string;
+  strategyOnePoints: number;
+  strategyTwoPoints: number;
+  totalRounds: number;
+  winner: string;
+  noise: boolean;
+  rounds: HistoryEntry[];
+  playedAt: string;
+}
+
+export interface Ranking {
+  rank: number;
+  strategyName: string;
+  totalMatches: number;
+  totalPoints: number;
+  avgPointsPerMatch: number;
+  wins: number;
+  losses: number;
+  draws?: number;
+  winRate: number;
 }
