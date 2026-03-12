@@ -37,7 +37,6 @@ const NavBar = () => {
                 Game
               </NavLink>
             </li>
-
             <li>
               <NavLink
                 to="/about"
@@ -48,6 +47,18 @@ const NavBar = () => {
                 }
               >
                 About
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/leaderboard"
+                className={({ isActive }) =>
+                  `hover:text-primary text-text tranistion-all ease-in-out duration-200 ${
+                    isActive ? "underline underline-offset-2" : ""
+                  }`
+                }
+              >
+                Leaderboard
               </NavLink>
             </li>
           </ul>
