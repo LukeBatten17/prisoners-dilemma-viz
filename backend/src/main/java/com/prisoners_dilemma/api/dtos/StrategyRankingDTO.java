@@ -1,10 +1,8 @@
 package com.prisoners_dilemma.api.dtos;
 
-import com.prisoners_dilemma.api.entities.Strategy;
-
 public record StrategyRankingDTO(
     int rank,
-    Strategy strategyName,
+    String strategyName,
     int totalMatches,
     int totalRounds,
     int wins,
