@@ -106,82 +106,83 @@ export function useGameLogic() {
   useEffect(() => {
     if (!matchComplete) return;
 
-    console.log({
-      strategyOneId: strategyOne.id,
-      strategyTwoId: strategyTwo.id,
-      strategyOnePoints: scores.strat_one,
-      strategyTwoPoints: scores.strat_two,
-      totalRounds: parseInt(maxRounds.toString()),
-      winnerId:
-        scores.strat_one > scores.strat_two
-          ? strategyOne.id
-          : scores.strat_two > scores.strat_one
-            ? strategyTwo.id
-            : null,
-      noise: noise,
-      noiseChance: DEFAULT_CONFIG.noiseChance,
-      rounds: stratOneHistory.map((entry, index) => ({
-        roundNumber: index + 1,
-        strategyOneMove: entry.move,
-        strategyTwoMove: stratTwoHistory[index].move,
-        strategyOnePoints: entry.payoff,
-        strategyTwoPoints: stratTwoHistory[index].payoff,
-        strategyOneAffectedByNoise:
-          noise &&
-          entry.move !==
-            strategyOne.strategy(
-              stratOneHistory.slice(0, index),
-              stratTwoHistory.slice(0, index),
-            ),
-        strategyTwoAffectedByNoise:
-          noise &&
-          stratTwoHistory[index].move !==
-            strategyTwo.strategy(
-              stratTwoHistory.slice(0, index),
-              stratOneHistory.slice(0, index),
-            ),
-      })),
-    });
+    // console.log({
+    //   strategyOneId: strategyOne.id,
+    //   strategyTwoId: strategyTwo.id,
+    //   strategyOnePoints: scores.strat_one,
+    //   strategyTwoPoints: scores.strat_two,
+    //   totalRounds: parseInt(maxRounds.toString()),
+    //   winnerId:
+    //     scores.strat_one > scores.strat_two
+    //       ? strategyOne.id
+    //       : scores.strat_two > scores.strat_one
+    //         ? strategyTwo.id
+    //         : null,
+    //   noise: noise,
+    //   noiseChance: DEFAULT_CONFIG.noiseChance,
+    //   rounds: stratOneHistory.map((entry, index) => ({
+    //     roundNumber: index + 1,
+    //     strategyOneMove: entry.move,
+    //     strategyTwoMove: stratTwoHistory[index].move,
+    //     strategyOnePoints: entry.payoff,
+    //     strategyTwoPoints: stratTwoHistory[index].payoff,
+    //     strategyOneAffectedByNoise:
+    //       noise &&
+    //       entry.move !==
+    //         strategyOne.strategy(
+    //           stratOneHistory.slice(0, index),
+    //           stratTwoHistory.slice(0, index),
+    //         ),
+    //     strategyTwoAffectedByNoise:
+    //       noise &&
+    //       stratTwoHistory[index].move !==
+    //         strategyTwo.strategy(
+    //           stratTwoHistory.slice(0, index),
+    //           stratOneHistory.slice(0, index),
+    //         ),
+    //   })),
+    // });
 
-    // fetch("/api/matches", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({
-    //     strategyOneId: strategyOne.id,
-    //     strategyTwoId: strategyTwo.id,
-    //     strategyOnePoints: scores.strat_one,
-    //     strategyTwoPoints: scores.strat_two,
-    //     totalRounds: maxRounds,
-    //     winner:
-    //       scores.strat_one > scores.strat_two
-    //         ? strategyOne.id
-    //         : scores.strat_two > scores.strat_one
-    //           ? strategyTwo.id
-    //           : null,
-    //     noise: noise,
-    //     rounds: stratOneHistory.map((entry, index) => ({
-    //       roundNumber: index + 1,
-    //       strategyOneMove: entry.move,
-    //       strategyTwoMove: stratTwoHistory[index].move,
-    //       strategyOnePoints: entry.payoff,
-    //       strategyTwoPoints: stratTwoHistory[index].payoff,
-    //       strategyOneAffectedByNoise:
-    //         noise &&
-    //         entry.move !==
-    //           strategyOne.strategy(
-    //             stratOneHistory.slice(0, index),
-    //             stratTwoHistory.slice(0, index),
-    //           ),
-    //       strategyTwoAffectedByNoise:
-    //         noise &&
-    //         stratTwoHistory[index].move !==
-    //           strategyTwo.strategy(
-    //             stratTwoHistory.slice(0, index),
-    //             stratOneHistory.slice(0, index),
-    //           ),
-    //     })),
-    //   }),
-    // }).catch(console.error);
+    fetch("/api/matches", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        strategyOneId: strategyOne.id,
+        strategyTwoId: strategyTwo.id,
+        strategyOnePoints: scores.strat_one,
+        strategyTwoPoints: scores.strat_two,
+        totalRounds: parseInt(maxRounds.toString()),
+        winnerId:
+          scores.strat_one > scores.strat_two
+            ? strategyOne.id
+            : scores.strat_two > scores.strat_one
+              ? strategyTwo.id
+              : null,
+        noise: noise,
+        noiseChance: DEFAULT_CONFIG.noiseChance,
+        rounds: stratOneHistory.map((entry, index) => ({
+          roundNumber: index + 1,
+          strategyOneMove: entry.move,
+          strategyTwoMove: stratTwoHistory[index].move,
+          strategyOnePoints: entry.payoff,
+          strategyTwoPoints: stratTwoHistory[index].payoff,
+          strategyOneAffectedByNoise:
+            noise &&
+            entry.move !==
+              strategyOne.strategy(
+                stratOneHistory.slice(0, index),
+                stratTwoHistory.slice(0, index),
+              ),
+          strategyTwoAffectedByNoise:
+            noise &&
+            stratTwoHistory[index].move !==
+              strategyTwo.strategy(
+                stratTwoHistory.slice(0, index),
+                stratOneHistory.slice(0, index),
+              ),
+        })),
+      }),
+    }).catch(console.error);
   }, [matchComplete]);
 
   const resetGame = () => {

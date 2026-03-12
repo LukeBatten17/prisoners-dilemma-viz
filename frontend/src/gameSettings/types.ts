@@ -48,7 +48,7 @@ export interface Ranking {
   strategyName: string;
   totalMatches: number;
   totalPoints: number;
-  avgPointsPerMatch: number;
+  avgPointsPerRound: number;
   wins: number;
   losses: number;
   draws: number;

@@ -1,3 +1,4 @@
+import React from "react";
 import type { RecentMatch } from "../gameSettings/types";
 
 type RecentMatchesProps = {
@@ -23,30 +24,36 @@ export default RecentMatches;
 
 const MatchCard: React.FC<{ match: RecentMatch }> = ({ match }) => {
   return (
-    <div className=" flex justify-between items-center border border-text p-2 shadow-sm shadow-text bg-background">
-      <div>
+    <div className="border border-text p-2 shadow-sm shadow-text bg-background flex flex-col gap-2 sm:flex-row sm:items-center">
+      {/* Date */}
+      <div className="sm:w-1/3 whitespace-nowrap">
         <span className="text-sm text-text/70">
           {new Date(match.playedAt).toLocaleString()}
         </span>
       </div>
-      <div className="flex gap-2 text-text">
+      {/* Score */}
+      <div className="sm:w-1/3 grid grid-cols-[1fr_auto_1fr] items-center gap-x-2 text-text min-w-0">
         <div
-          className={`flex flex-col items-center font-semibold ${match.winner === match.strategyOneName ? "text-green-500" : "text-red-500"}`}
+          className={`flex flex-col items-center min-w-0 ${match.winner === null ? "" : match.strategyOneName === match.winner ? "text-green-500" : "text-red-500"}`}
         >
-          <span>{match.strategyOneName}</span>
+          <span className="font-semibold truncate w-full text-center">
+            {match.strategyOneName}
+          </span>
           <span>{match.strategyOnePoints}</span>
         </div>
-        -
+        <span>-</span>
         <div
-          className={`flex flex-col items-center font-semibold ${match.winner === match.strategyTwoName ? "text-green-500" : "text-red-500"}`}
+          className={`flex flex-col items-center min-w-0 ${match.winner === null ? "" : match.strategyTwoName === match.winner ? "text-green-500" : "text-red-500"}`}
         >
-          <span>{match.strategyTwoName}</span>
+          <span className="font-semibold truncate w-full text-center">
+            {match.strategyTwoName}
+          </span>
           <span>{match.strategyTwoPoints}</span>
         </div>
       </div>
-      <div className="flex flex-col items-center text-sm text-text/70">
-        <p className="">Winner: {match.winner}</p>
-        <span className="">Total Rounds: {match.totalRounds}</span>
+      {/* Total Rounds */}
+      <div className="sm:w-1/3 flex flex-col sm:items-end text-sm text-text/70 whitespace-nowrap">
+        <span>Total Rounds: {match.totalRounds}</span>
       </div>
     </div>
   );
