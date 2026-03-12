@@ -54,6 +54,9 @@ public class Match {
     @Column(nullable = false)
     private boolean noise;
 
+    @Column(nullable = false)
+    private double noiseChance;
+
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private LocalDateTime playedAt;

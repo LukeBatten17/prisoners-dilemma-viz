@@ -29,7 +29,7 @@ public class MatchService {
     public MatchResponseDTO saveMatch(CreateMatchRequestDTO request) {
         Strategy strategyOne = strategyService.getById(request.strategyOneId());
         Strategy strategyTwo = strategyService.getById(request.strategyTwoId());
-        Strategy winner = strategyService.getById(request.winnerId());
+        Strategy winner = request.winnerId() != null ? strategyService.getById(request.winnerId()) : null;
 
         Match match = Match.builder()
             .strategyOne(strategyOne)
@@ -77,7 +77,7 @@ public class MatchService {
             saved.getStrategyOnePoints(),
             saved.getStrategyTwoPoints(),
             saved.getTotalRounds(),
-            winner.getName(),
+            winner != null ? winner.getName() : null,
             saved.isNoise(),
             roundDTOs,
             saved.getPlayedAt()
@@ -94,7 +94,7 @@ public class MatchService {
                 m.getStrategyOnePoints(),
                 m.getStrategyTwoPoints(),
                 m.getTotalRounds(),
-                m.getWinner().getName(),
+                m.getWinner() != null ? m.getWinner().getName() : null,
                 m.isNoise(),
                 m.getRounds().stream()
                     .map(r -> new RoundDTO(

@@ -3,9 +3,11 @@ export type Move = "C" | "D" | string;
 export interface HistoryEntry {
   move: Move;
   payoff: number;
+  affectedByNoise: boolean;
 }
 
 export interface Strategy {
+  id: string;
   name: string;
   description: string;
   strategy: (
@@ -24,8 +26,8 @@ export interface SummaryData {
   topStrategy: string;
   totalMatches: number;
   totalRounds: number;
-  avgPointsPerMatch: number;
-  topStrategyWins: number;
+  avgPointsPerRound: number;
+  topStrategyAvgPointsPerRound: number;
 }
 
 export interface RecentMatch {
@@ -49,6 +51,6 @@ export interface Ranking {
   avgPointsPerMatch: number;
   wins: number;
   losses: number;
-  draws?: number;
-  winRate: number;
+  draws: number;
+  successRate: number;
 }

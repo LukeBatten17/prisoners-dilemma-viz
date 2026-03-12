@@ -1,20 +1,23 @@
 import type { Strategy } from "./types";
 
 export const AlwaysCooperate: Strategy = {
+  id: "always_cooperate",
   name: "Always Cooperate",
   description: "Always chooses to cooperate.",
   strategy: () => "C",
 };
 
 export const AlwaysDefect: Strategy = {
+  id: "always_defect",
   name: "Always Defect",
   description: "Always chooses to defect.",
   strategy: () => "D",
 };
 
 export const TitForTat: Strategy = {
+  id: "tit_for_tat",
   name: "Tit-for-Tat",
-  description: "Starts with “C”, then copies opponent's last move",
+  description: "Starts with cooperate, then copies opponent's last move.",
   strategy: (_selfHistory, opponentHistory) => {
     if (opponentHistory.length === 0) return "C";
     if (opponentHistory[opponentHistory.length - 1].move === "D") return "D";
@@ -23,14 +26,17 @@ export const TitForTat: Strategy = {
 };
 
 export const Random: Strategy = {
+  id: "random",
   name: "Random",
-  description: "Randomly plays “C” or “D” each round",
+  description:
+    "Randomly cooperates or defects each round with equal probability.",
   strategy: () => {
     return Math.random() < 0.5 ? "C" : "D";
   },
 };
 
 export const Grim: Strategy = {
+  id: "grim",
   name: "Grim",
   description:
     "Cooperates until the opponent defects and thereafter always defects. Sometimes also called Spiteful.",
@@ -42,6 +48,7 @@ export const Grim: Strategy = {
 };
 
 export const SoftMajority: Strategy = {
+  id: "soft_majority",
   name: "Soft Majority",
   description:
     "Begins by cooperating and cooperates as long as the number of times the opponent has cooperated is greater or equal to the number of times it has defected. Otherwise will defect.",
@@ -58,9 +65,10 @@ export const SoftMajority: Strategy = {
   },
 };
 export const HardMajority: Strategy = {
+  id: "hard_majority",
   name: "Hard Majority",
   description:
-    "Defects on the first move and defects if the number of defections of the opponent is greater than or equal to the number of times she has cooperated. Otherwise will cooperate",
+    "Defects on the first move and defects if the number of defections of the opponent is greater than or equal to the number of times they have cooperated. Otherwise will cooperate.",
   strategy: (_selfHistory, opponentHistory) => {
     if (opponentHistory.length === 0) return "D";
     let coopCount = 0;
@@ -75,8 +83,9 @@ export const HardMajority: Strategy = {
 };
 
 export const PeriodicDDC: Strategy = {
+  id: "periodic_ddc",
   name: "Periodic DDC",
-  description: "Plays DDC periodically",
+  description: "Plays DDC periodically.",
   strategy: (_selfHistory, opponentHistory) => {
     if (opponentHistory.length === 0) return "D";
     if ((opponentHistory.length + 1) % 3 === 0) return "C";
@@ -85,8 +94,9 @@ export const PeriodicDDC: Strategy = {
 };
 
 export const PeriodicCCD: Strategy = {
+  id: "periodic_ccd",
   name: "Periodic CCD",
-  description: "Plays CCD periodically",
+  description: "Plays CCD periodically.",
   strategy: (_selfHistory, opponentHistory) => {
     if (opponentHistory.length === 0) return "C";
     if ((opponentHistory.length + 1) % 3 === 0) return "D";
@@ -94,8 +104,9 @@ export const PeriodicCCD: Strategy = {
   },
 };
 export const Alternator: Strategy = {
+  id: "alternator",
   name: "Alternator",
-  description: "Alternates between cooperating and defecting",
+  description: "Alternates between cooperating and defecting.",
   strategy: (_selfHistory, opponentHistory) => {
     if (opponentHistory.length === 0) return "C";
     if ((opponentHistory.length + 1) % 2 === 0) return "D";
@@ -104,6 +115,7 @@ export const Alternator: Strategy = {
 };
 
 export const SuspiciousTitforTat: Strategy = {
+  id: "sus_tit_for_tat",
   name: "Suspicious Tit-for-Tat",
   description:
     "Defects on the first move then plays what the opponent played the previous move. Sometimes also called Mistrust.",
@@ -115,6 +127,7 @@ export const SuspiciousTitforTat: Strategy = {
 };
 
 export const Pavlov: Strategy = {
+  id: "pavlov",
   name: "Pavlov",
   description:
     "Cooperates on the first move and defects only if both players do not agree on the previous move.",
@@ -130,6 +143,7 @@ export const Pavlov: Strategy = {
 };
 
 export const ReverseTitforTat: Strategy = {
+  id: "rev_tit_for_tat",
   name: "Reverse Tit-for-Tat",
   description:
     "Defects first move, then plays the reverse of the opponent's previous move.",
@@ -141,6 +155,7 @@ export const ReverseTitforTat: Strategy = {
 };
 
 export const TitforTwoTats: Strategy = {
+  id: "tit_for_two_tats",
   name: "Tit for Two Tats",
   description: "Cooperates unless defected against twice in a row.",
   strategy: (_selfHistory, opponentHistory) => {
@@ -155,6 +170,7 @@ export const TitforTwoTats: Strategy = {
 };
 
 export const TwoTitsforTat: Strategy = {
+  id: "two_tit_for_tats",
   name: "Two Tits-for-Tat",
   description:
     "Defects twice after being defected against, otherwise cooperates.",

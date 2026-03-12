@@ -49,18 +49,19 @@ public class LeaderboardService {
             }
 
             int totalMatches = strategyMatches.size();
-            double winRate = (double) wins / totalMatches;
-            double avgPointsPerMatch = (double) totalPoints / totalMatches;
+            double successRate = (double) (wins + draws) / totalMatches;
+            double avgPointsPerRound = totalRounds > 0 ? (double) totalPoints / totalRounds : 0;
             overallTotalPoints += totalPoints;
 
             rankings.add(new StrategyRankingDTO(0,
                 s.getName(), totalMatches, totalRounds, wins,
-                totalMatches - wins - draws, draws, winRate, totalPoints, avgPointsPerMatch));
+                totalMatches - wins - draws, draws, successRate, totalPoints, avgPointsPerRound
+             ));
         }
 
-        // Sort by wins desc, then winRate desc
-        rankings.sort(Comparator.comparingInt(StrategyRankingDTO::wins)
-            .thenComparingDouble(StrategyRankingDTO::winRate).reversed());
+        // Sort by avg points per round, then by success rate as tiebreaker
+        rankings.sort(Comparator.comparingDouble(StrategyRankingDTO::avgPointsPerRound)
+            .thenComparingDouble(StrategyRankingDTO::successRate).reversed());
 
         // Assign ranks 
         List<StrategyRankingDTO> ranked = new ArrayList<>();
@@ -68,7 +69,7 @@ public class LeaderboardService {
             StrategyRankingDTO r = rankings.get(i);
             ranked.add(new StrategyRankingDTO(
                 i + 1, r.strategyName(), r.totalMatches(), r.totalRounds(),
-                r.wins(), r.losses(), r.draws(), r.winRate(), r.totalPoints(), r.avgPointsPerMatch()
+                r.wins(), r.losses(), r.draws(), r.successRate(), r.totalPoints(), r.avgPointsPerRound()
             ));
         }
 
@@ -81,7 +82,7 @@ public class LeaderboardService {
                 m.getStrategyOnePoints(),
                 m.getStrategyTwoPoints(),
                 m.getTotalRounds(),
-                m.getWinner().getName(),
+                m.getWinner() != null ? m.getWinner().getName() : null,
                 m.isNoise(),
                 m.getRounds().stream()
                     .map(r -> new RoundDTO(
@@ -100,11 +101,14 @@ public class LeaderboardService {
 
         int totalRoundsOverall = matches.stream().mapToInt(Match::getTotalRounds).sum();
         String topStrategy = ranked.isEmpty() ? null : ranked.get(0).strategyName();
-        int topStrategyWins = ranked.isEmpty() ? 0 : ranked.get(0).wins();
-        int avgPointsPerMatch = matches.isEmpty() ? 0 : overallTotalPoints / matches.size();
+        double topStrategyAvgPointsPerRound = ranked.isEmpty() ? 0 : ranked.get(0).avgPointsPerRound();
 
         LeaderboardSummary summary = new LeaderboardSummary(
-            matches.size(), totalRoundsOverall, topStrategy, topStrategyWins, avgPointsPerMatch
+            matches.size(), 
+            totalRoundsOverall, 
+            topStrategy, 
+            topStrategyAvgPointsPerRound, 
+            overallTotalPoints > 0 && totalRoundsOverall > 0 ? (double) overallTotalPoints / totalRoundsOverall : 0
         );
 
         return new LeaderboardResponseDTO(ranked, recentMatches, summary);

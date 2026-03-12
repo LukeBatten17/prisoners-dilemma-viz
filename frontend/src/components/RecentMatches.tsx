@@ -23,7 +23,7 @@ export default RecentMatches;
 
 const MatchCard: React.FC<{ match: RecentMatch }> = ({ match }) => {
   return (
-    <div className=" flex justify-between items-center border border-text p-2 rounded shadow-sm shadow-text bg-background">
+    <div className=" flex justify-between items-center border border-text p-2 shadow-sm shadow-text bg-background">
       <div>
         <span className="text-sm text-text/70">
           {new Date(match.playedAt).toLocaleString()}

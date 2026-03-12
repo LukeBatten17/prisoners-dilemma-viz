@@ -1,16 +1,16 @@
 INSERT INTO strategies (id, name, description, created_at) VALUES
 ('always_cooperate','Always Cooperate', 'Always chooses to cooperate.', NOW()),
 ('always_defect','Always Defect', 'Always chooses to defect.', NOW()),
-('tit_for_tat', 'Tit-for-Tat', 'Starts with cooperate, then copies opponent''s last move', NOW()),
+('tit_for_tat', 'Tit-for-Tat', 'Starts with cooperate, then copies opponent''s last move.', NOW()),
 ('random', 'Random', 'Randomly cooperates or defects each round with equal probability.', NOW()),
 ('grim', 'Grim', 'Cooperates until the opponent defects and thereafter always defects. Sometimes also called Spiteful.', NOW()),
 ('soft_majority', 'Soft Majority', 'Begins by cooperating and cooperates as long as the number of times the opponent has cooperated is greater or equal to the number of times it has defected. Otherwise will defect.', NOW()),
-('hard_majority', 'Hard Majority', 'Defects on the first move and defects if the number of defections of the opponent is greater than or equal to the number of times she has cooperated. Otherwise will cooperate', NOW()),
-('periodic_ddc', 'Periodic DDC', 'Plays DDC periodically', NOW()),
-('periodic_ccd', 'Periodic CCD', 'Plays CCD periodically', NOW()),
-('alternator', 'Alternator', 'Alternates between cooperating and defecting', NOW()),
+('hard_majority', 'Hard Majority', 'Defects on the first move and defects if the number of defections of the opponent is greater than or equal to the number of times she has cooperated. Otherwise will cooperate.', NOW()),
+('periodic_ddc', 'Periodic DDC', 'Plays DDC periodically.', NOW()),
+('periodic_ccd', 'Periodic CCD', 'Plays CCD periodically.', NOW()),
+('alternator', 'Alternator', 'Alternates between cooperating and defecting.', NOW()),
 ('sus_tit_for_tat', 'Suspicious Tit-for-Tat', 'Defects on the first move then plays what the opponent played the previous move. Sometimes also called Mistrust.', NOW()),
 ('pavlov', 'Pavlov', 'Cooperates on the first move and defects only if both players do not agree on the previous move.', NOW()),
 ('rev_tit_for_tat', 'Reverse Tit-for-Tat', 'Defects first move, then plays the reverse of the opponent''s previous move.', NOW()),
 ('tit_for_two_tats', 'Tit for Two Tats', 'Cooperates unless defected against twice in a row.', NOW()),
-('two_tit_for_tats', 'Two Tits-for-Tat', 'Defects twice after being defected against, otherwise cooperates', NOW());
+('two_tit_for_tats', 'Two Tits-for-Tat', 'Defects twice after being defected against, otherwise cooperates,', NOW());

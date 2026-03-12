@@ -8,9 +8,9 @@ public record StrategyRankingDTO(
     int wins,
     int losses,
     int draws,
-    double winRate,
+    double successRate,
     int totalPoints,
-    double avgPointsPerMatch
+    double avgPointsPerRound
 ) {
     
 }

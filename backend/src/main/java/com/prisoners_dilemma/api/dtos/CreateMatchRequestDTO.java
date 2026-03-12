@@ -10,5 +10,6 @@ public record CreateMatchRequestDTO(
     int totalRounds,
     String winnerId,
     boolean noise,
+    double noiseChance,
     List<RoundDTO> rounds
 ) {}

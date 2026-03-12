@@ -200,8 +200,9 @@ describe("useGameLogic", () => {
     const { result } = renderHook(() => useGameLogic());
 
     const newStrategy = {
+      id: "tit_for_tat",
       name: "Tit for Tat",
-      description: "Starts with “C”, then copies opponent's last move",
+      description: "Starts with “C”, then copies opponent's last move.",
       strategy: vi.fn(() => "C"),
     };
 

@@ -43,8 +43,8 @@ const columns = [
     header: "Draws",
     cell: (info) => info.getValue() || 0,
   }),
-  columnHelper.accessor("winRate", {
-    header: "Win Rate",
+  columnHelper.accessor("successRate", {
+    header: "Success Rate",
     cell: (info) => `${(info.getValue() * 100).toFixed(2)}%`,
   }),
 ];

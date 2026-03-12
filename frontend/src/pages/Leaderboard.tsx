@@ -28,7 +28,7 @@ const Leaderboard = () => {
             <Card
               title="Top Strategy"
               data={data?.summary?.topStrategy || "Loading..."}
-              subtext={`${data?.summary?.topStrategyWins ?? "Loading..."} wins`}
+              subtext={`${data?.summary?.topStrategyAvgPointsPerRound ?? "Loading..."} wins`}
             />
             <Card
               title="Total Matches"
@@ -41,8 +41,8 @@ const Leaderboard = () => {
               subtext="across all matches"
             />
             <Card
-              title="Average Points per Match"
-              data={data?.summary?.avgPointsPerMatch || "Loading..."}
+              title="Average Points per Round"
+              data={data?.summary?.avgPointsPerRound.toFixed(2) || "Loading..."}
               subtext="across all strategies"
             />
           </div>

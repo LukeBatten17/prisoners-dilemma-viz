@@ -1,4 +1,4 @@
-package com.prisoners_dilemma.api.dtos;
+    package com.prisoners_dilemma.api.dtos;
 
 public record RoundDTO(
     int roundNumber,

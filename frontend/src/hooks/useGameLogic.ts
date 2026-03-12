@@ -16,10 +16,10 @@ export function useGameLogic() {
   const [stratTwoHistory, setStratTwoHistory] = useState<HistoryEntry[]>([]);
 
   const [strategyOne, setStrategyOne] = useState(
-    DEFAULT_CONFIG.defaultStratOne
+    DEFAULT_CONFIG.defaultStratOne,
   );
   const [strategyTwo, setStrategyTwo] = useState(
-    DEFAULT_CONFIG.defaultStratTwo
+    DEFAULT_CONFIG.defaultStratTwo,
   );
 
   useEffect(() => {
@@ -27,6 +27,7 @@ export function useGameLogic() {
       if (currentRound >= maxRounds) {
         setIsRunning(false);
         setMatchComplete(true);
+
         return;
       }
       if (!isRunning) return;
@@ -35,15 +36,21 @@ export function useGameLogic() {
         let move_one = strategyOne.strategy(stratOneHistory, stratTwoHistory);
         let move_two = strategyTwo.strategy(stratTwoHistory, stratOneHistory);
 
+        let affectedByNoiseOne = false;
+        let affectedByNoiseTwo = false;
+
         // Simulate noise
         if (noise) {
           const noiseChance = DEFAULT_CONFIG.noiseChance;
           if (Math.random() < noiseChance) {
             move_one = move_one === "C" ? "D" : "C";
+            affectedByNoiseOne = true;
             console.log("Noise altered move one");
           }
           if (Math.random() < noiseChance) {
             move_two = move_two === "C" ? "D" : "C";
+            affectedByNoiseTwo = true;
+
             console.log("Noise altered move two");
           }
         }
@@ -55,11 +62,19 @@ export function useGameLogic() {
         setPayoff(`${payoff_one}${payoff_two}`);
         setStratOneHistory((prev) => [
           ...prev,
-          { move: move_one, payoff: payoff_one },
+          {
+            move: move_one,
+            payoff: payoff_one,
+            affectedByNoise: affectedByNoiseOne,
+          },
         ]);
         setStratTwoHistory((prev) => [
           ...prev,
-          { move: move_two, payoff: payoff_two },
+          {
+            move: move_two,
+            payoff: payoff_two,
+            affectedByNoise: affectedByNoiseTwo,
+          },
         ]);
         setScores((prev) => ({
           strat_one: prev.strat_one + payoff_one,
@@ -87,6 +102,87 @@ export function useGameLogic() {
     delay,
     maxRounds,
   ]);
+
+  useEffect(() => {
+    if (!matchComplete) return;
+
+    console.log({
+      strategyOneId: strategyOne.id,
+      strategyTwoId: strategyTwo.id,
+      strategyOnePoints: scores.strat_one,
+      strategyTwoPoints: scores.strat_two,
+      totalRounds: parseInt(maxRounds.toString()),
+      winnerId:
+        scores.strat_one > scores.strat_two
+          ? strategyOne.id
+          : scores.strat_two > scores.strat_one
+            ? strategyTwo.id
+            : null,
+      noise: noise,
+      noiseChance: DEFAULT_CONFIG.noiseChance,
+      rounds: stratOneHistory.map((entry, index) => ({
+        roundNumber: index + 1,
+        strategyOneMove: entry.move,
+        strategyTwoMove: stratTwoHistory[index].move,
+        strategyOnePoints: entry.payoff,
+        strategyTwoPoints: stratTwoHistory[index].payoff,
+        strategyOneAffectedByNoise:
+          noise &&
+          entry.move !==
+            strategyOne.strategy(
+              stratOneHistory.slice(0, index),
+              stratTwoHistory.slice(0, index),
+            ),
+        strategyTwoAffectedByNoise:
+          noise &&
+          stratTwoHistory[index].move !==
+            strategyTwo.strategy(
+              stratTwoHistory.slice(0, index),
+              stratOneHistory.slice(0, index),
+            ),
+      })),
+    });
+
+    // fetch("/api/matches", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({
+    //     strategyOneId: strategyOne.id,
+    //     strategyTwoId: strategyTwo.id,
+    //     strategyOnePoints: scores.strat_one,
+    //     strategyTwoPoints: scores.strat_two,
+    //     totalRounds: maxRounds,
+    //     winner:
+    //       scores.strat_one > scores.strat_two
+    //         ? strategyOne.id
+    //         : scores.strat_two > scores.strat_one
+    //           ? strategyTwo.id
+    //           : null,
+    //     noise: noise,
+    //     rounds: stratOneHistory.map((entry, index) => ({
+    //       roundNumber: index + 1,
+    //       strategyOneMove: entry.move,
+    //       strategyTwoMove: stratTwoHistory[index].move,
+    //       strategyOnePoints: entry.payoff,
+    //       strategyTwoPoints: stratTwoHistory[index].payoff,
+    //       strategyOneAffectedByNoise:
+    //         noise &&
+    //         entry.move !==
+    //           strategyOne.strategy(
+    //             stratOneHistory.slice(0, index),
+    //             stratTwoHistory.slice(0, index),
+    //           ),
+    //       strategyTwoAffectedByNoise:
+    //         noise &&
+    //         stratTwoHistory[index].move !==
+    //           strategyTwo.strategy(
+    //             stratTwoHistory.slice(0, index),
+    //             stratOneHistory.slice(0, index),
+    //           ),
+    //     })),
+    //   }),
+    // }).catch(console.error);
+  }, [matchComplete]);
 
   const resetGame = () => {
     setIsRunning(false);
