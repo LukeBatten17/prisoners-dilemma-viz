@@ -8,7 +8,7 @@ type RecentMatchesProps = {
 const RecentMatches: React.FC<RecentMatchesProps> = ({ data }) => {
   return (
     <div>
-      <h3 className="text-lg font-bold">10 Most Recent Matches</h3>
+      <h3 className="text-lg font-bold text-text">Most Recent Matches</h3>
       <ul className=" flex flex-col gap-4 mb-4">
         {data.map((match, index) => (
           <li key={index}>

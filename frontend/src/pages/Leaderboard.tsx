@@ -4,6 +4,7 @@ import Card from "../components/Card";
 import type { LeaderboardData } from "../gameSettings/types";
 import RankingsTable from "../components/RankingsTable";
 import RecentMatches from "../components/RecentMatches";
+import Tooltip from "../components/Tooltip";
 
 const Leaderboard = () => {
   const [data, setData] = useState<LeaderboardData | null>(null);
@@ -17,16 +18,26 @@ const Leaderboard = () => {
   return (
     <div className="flex flex-col bg-background min-h-screen bg-pattern ">
       <NavBar />
-      <main className="flex flex-col justify-center items-center mx-auto p-4 pb-8 max-w-6xl w-full">
-        <h1 className="text-3xl font-bold mb-3 text-left uppercase w-full tracking-wide text-text">
-          Leaderboard
-        </h1>
+      <main className="flex flex-col justify-center items-center mx-auto p-4 pb-8 max-w-6xl w-full text-text">
+        <div className="flex flex-col justify-start w-full mb-2">
+          <h1 className="text-3xl font-bold uppercase tracking-wide">
+            Leaderboard
+          </h1>
+          <p className="text-sm -mt-1.5">
+            Based on performance across{" "}
+            <Tooltip text="A match that ran for the full number of rounds (reached max rounds)" position="bottom">
+              <span className="underline">completed matches</span>
+            </Tooltip>{" "}
+            by all users.
+          </p>
+        </div>
+
         <div className="flex flex-col gap-4 w-full">
           <div className="flex flex-col gap-3 md:flex-row text-text">
             <Card
               title="Top Strategy"
               data={data?.summary?.topStrategy || "Loading..."}
-              subtext={`with ${data?.summary?.topStrategyAvgPointsPerRound ?? "Loading..."} points per round`}
+              subtext={`with ${data?.summary?.topStrategyAvgPointsPerRound?.toFixed(2) ?? "Loading..."} points per round`}
             />
             <Card
               title="Total Matches"

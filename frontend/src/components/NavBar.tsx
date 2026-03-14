@@ -39,18 +39,6 @@ const NavBar = () => {
             </li>
             <li>
               <NavLink
-                to="/about"
-                className={({ isActive }) =>
-                  `hover:text-primary text-text tranistion-all ease-in-out duration-200 ${
-                    isActive ? "underline underline-offset-2" : ""
-                  }`
-                }
-              >
-                About
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
                 to="/leaderboard"
                 className={({ isActive }) =>
                   `hover:text-primary text-text tranistion-all ease-in-out duration-200 ${
@@ -59,6 +47,18 @@ const NavBar = () => {
                 }
               >
                 Leaderboard
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/about"
+                className={({ isActive }) =>
+                  `hover:text-primary text-text tranistion-all ease-in-out duration-200 ${
+                    isActive ? "underline underline-offset-2" : ""
+                  }`
+                }
+              >
+                About
               </NavLink>
             </li>
           </ul>
@@ -109,6 +109,18 @@ const NavBar = () => {
                   }
                 >
                   Game
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/leaderboard"
+                  className={({ isActive }) =>
+                    `hover:text-primary text-text tranistion-all ease-in-out duration-200 ${
+                      isActive ? "underline underline-offset-2" : ""
+                    }`
+                  }
+                >
+                  Leaderboard
                 </NavLink>
               </li>
               <li>

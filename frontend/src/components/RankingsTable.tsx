@@ -1,4 +1,5 @@
 import React from "react";
+import Tooltip from "./Tooltip";
 import {
   createColumnHelper,
   flexRender,
@@ -9,6 +10,19 @@ import {
 import type { Ranking } from "../gameSettings/types";
 
 const columnHelper = createColumnHelper<Ranking>();
+
+function ratioToColor(ratio: number): string {
+  if (ratio >= 0.66) return "hsl(120, 80%, 38%)";
+  if (ratio >= 0.33) return "hsl(45, 90%, 42%)";
+  return "hsl(0, 80%, 45%)";
+}
+
+function avgPointsColor(avg: number): string {
+  if (avg >= 3.0) return "hsl(120, 80%, 38%)"; // green  — above mutual cooperation
+  if (avg >= 2.0) return "hsl(52, 100%, 45%)"; // yellow — at mutual cooperation baseline
+  if (avg >= 1.0) return "hsl(25, 90%, 60%)"; // orange — below baseline
+  return "hsl(0, 80%, 60%)"; // red    — getting exploited
+}
 
 const columns = [
   columnHelper.accessor("rank", {
@@ -32,7 +46,29 @@ const columns = [
     ),
   }),
   columnHelper.accessor("totalMatches", {
-    header: "Total Matches",
+    header: () => (
+      <span className="inline-flex items-center gap-1">
+        Total Matches
+        <Tooltip
+          text="Completed matches only — reached the max number of rounds"
+          position="bottom"
+          icon={
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              className="size-3.5 opacity-50"
+            >
+              <path
+                fillRule="evenodd"
+                d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-7-4a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM9 9a.75.75 0 0 0 0 1.5h.253a.25.25 0 0 1 .244.304l-.459 2.066A1.75 1.75 0 0 0 10.747 15H11a.75.75 0 0 0 0-1.5h-.253a.25.25 0 0 1-.244-.304l.459-2.066A1.75 1.75 0 0 0 9.253 9H9Z"
+                clipRule="evenodd"
+              />
+            </svg>
+          }
+        />
+      </span>
+    ),
     cell: (info) => info.getValue(),
   }),
   columnHelper.accessor("totalPoints", {
@@ -41,23 +77,59 @@ const columns = [
   }),
   columnHelper.accessor("avgPointsPerRound", {
     header: "Avg Points/Round",
-    cell: (info) => info.getValue().toFixed(2),
+    cell: (info) => {
+      const val = info.getValue();
+      return (
+        <span style={{ color: avgPointsColor(val) }} className="font-semibold">
+          {val.toFixed(2)}
+        </span>
+      );
+    },
   }),
   columnHelper.accessor("wins", {
     header: "Wins",
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor("losses", {
-    header: "Losses",
     cell: (info) => info.getValue(),
   }),
   columnHelper.accessor("draws", {
     header: "Draws",
     cell: (info) => info.getValue(),
   }),
+  columnHelper.accessor("losses", {
+    header: "Losses",
+    cell: (info) => info.getValue(),
+  }),
   columnHelper.accessor("successRate", {
-    header: "Success Rate",
-    cell: (info) => `${(info.getValue() * 100).toFixed(2)}%`,
+    header: () => (
+      <span className="inline-flex items-center gap-1">
+        Success Rate
+        <Tooltip
+          text="(Wins + Draws) / Total Matches"
+          position="left"
+          icon={
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              className="size-3.5 opacity-50"
+            >
+              <path
+                fillRule="evenodd"
+                d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-7-4a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM9 9a.75.75 0 0 0 0 1.5h.253a.25.25 0 0 1 .244.304l-.459 2.066A1.75 1.75 0 0 0 10.747 15H11a.75.75 0 0 0 0-1.5h-.253a.25.25 0 0 1-.244-.304l.459-2.066A1.75 1.75 0 0 0 9.253 9H9Z"
+                clipRule="evenodd"
+              />
+            </svg>
+          }
+        />
+      </span>
+    ),
+    cell: (info) => {
+      const val = info.getValue();
+      return (
+        <span style={{ color: ratioToColor(val) }} className="font-semibold">
+          {(val * 100).toFixed(2)}%
+        </span>
+      );
+    },
   }),
 ];
 
@@ -83,7 +155,7 @@ const RankingsTable: React.FC<RankingsTableProps> = ({ data }) => {
 
   return (
     <div>
-      <h3 className="text-lg font-bold">Rankings</h3>
+      <h3 className="text-lg font-bold text-text">Rankings</h3>
       <div className="overflow-x-auto w-full border-1 border-text ">
         <table className="w-full text-sm text-left rtl:text-right text-body bg-background  ">
           <thead className="uppercase text-text ">
@@ -92,7 +164,7 @@ const RankingsTable: React.FC<RankingsTableProps> = ({ data }) => {
                 {headerGroup.headers.map((header) => {
                   return (
                     <th
-                      className="px-4 py-2 border-b-1 border-text text-center tracking-wider whitespace-nowrap"
+                      className="px-4 py-2 border-b-1 border-text text-center tracking-wider whitespace-nowrap hover:text-primary transition-colors"
                       key={header.id}
                     >
                       {header.isPlaceholder ? null : (
@@ -162,7 +234,7 @@ const RankingsTable: React.FC<RankingsTableProps> = ({ data }) => {
           <tbody>
             {table.getRowModel().rows.map((row) => (
               <tr
-                className="odd:bg-background even:bg-secondary/5 text-text"
+                className="text-text odd:bg-background even:bg-secondary/5"
                 key={row.id}
               >
                 {row.getVisibleCells().map((cell) => (
