@@ -11,6 +11,7 @@ type OptionsPanelProps = {
   updateDelay: any;
   updateMaxRounds: any;
   setNoise: any;
+  currentRound: number;
 };
 
 const OptionsPanel: React.FC<OptionsPanelProps> = ({
@@ -20,6 +21,7 @@ const OptionsPanel: React.FC<OptionsPanelProps> = ({
   isRunning,
   updateDelay,
   updateMaxRounds,
+  currentRound,
   setNoise,
 }) => {
   return (
@@ -35,6 +37,7 @@ const OptionsPanel: React.FC<OptionsPanelProps> = ({
           defaultValue={DEFAULT_CONFIG.maxRounds}
           className="bg-background"
           ariaLabel="number of rounds"
+          disabled={isRunning || currentRound > 0}
         >
           <option value={1}>1</option>
           <option value={5}>5</option>
@@ -52,6 +55,7 @@ const OptionsPanel: React.FC<OptionsPanelProps> = ({
           type="checkbox"
           id="noise"
           value="noise"
+          disabled={isRunning || currentRound > 0}
           onChange={(e) => setNoise(e.target.checked)}
         />
       </div>
@@ -72,6 +76,7 @@ const OptionsPanel: React.FC<OptionsPanelProps> = ({
           <option value={1500}>1x</option>
           <option value={1000}>1.5x</option>
           <option value={500}>2x</option>
+          <option value={200}>5x</option>
         </Select>
       </div>
       <div className="flex gap-2">

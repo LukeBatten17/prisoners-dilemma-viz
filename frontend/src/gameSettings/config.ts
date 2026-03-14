@@ -2,7 +2,7 @@ import { strategies } from "./strategies";
 
 const DEFAULT_CONFIG = {
   maxRounds: 10,
-  delay: 100,
+  delay: 1500,
   noise: false,
   noiseChance: 0.05,
   payoffMatrix: {

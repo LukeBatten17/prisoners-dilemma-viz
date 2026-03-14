@@ -43,6 +43,7 @@ const Game = () => {
             updateDelay={updateDelay}
             updateMaxRounds={updateMaxRounds}
             setNoise={setNoise}
+            currentRound={currentRound}
           />
         </div>
 
