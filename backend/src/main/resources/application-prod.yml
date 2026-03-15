@@ -1,7 +1,7 @@
 spring:
   docker:
     compose:
-      file: ./compose.yaml
+      enabled: false
   datasource:
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
@@ -20,6 +20,3 @@ spring:
 
 project:
   images: images/
-
-base:
-  url: http://localhost:8080

@@ -7,17 +7,27 @@ describe("Strategy Tests", () => {
   });
 
   it("TitForTat copies opponent last move", () => {
-    const opponentHistory = [{ move: "D", payoff: 5 }];
+    const opponentHistory = [{ move: "D", payoff: 5, affectedByNoise: false }];
     expect(TitForTat.strategy([], opponentHistory)).toBe("D");
   });
 
   it("AlwaysCooperate always returns C", () => {
     expect(AlwaysCooperate.strategy([], [])).toBe("C");
-    expect(AlwaysCooperate.strategy([], [{ move: "D", payoff: 0 }])).toBe("C");
+    expect(
+      AlwaysCooperate.strategy(
+        [],
+        [{ move: "D", payoff: 0, affectedByNoise: false }],
+      ),
+    ).toBe("C");
   });
 
   it("AlwaysDefect always returns D", () => {
     expect(AlwaysDefect.strategy([], [])).toBe("D");
-    expect(AlwaysDefect.strategy([], [{ move: "C", payoff: 3 }])).toBe("D");
+    expect(
+      AlwaysDefect.strategy(
+        [],
+        [{ move: "C", payoff: 3, affectedByNoise: false }],
+      ),
+    ).toBe("D");
   });
 });
