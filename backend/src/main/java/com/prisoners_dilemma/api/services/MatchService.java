@@ -27,9 +27,38 @@ public class MatchService {
 
     @Transactional
     public MatchResponseDTO saveMatch(CreateMatchRequestDTO request) {
+
+        //Since a must reach total rounds to be added. 
+        if (request.rounds().size() != request.totalRounds()) {
+            throw new IllegalArgumentException("Round count does not match totalRounds");
+        }
+
+        //Winnder must be either strategy one or strategy two or null if draw
+        if (request.winnerId() != null && 
+            !request.winnerId().equals(request.strategyOneId()) && 
+            !request.winnerId().equals(request.strategyTwoId())) {
+            throw new IllegalArgumentException("Winner must be one of the two strategies");
+        }
+
+        for (RoundDTO r : request.rounds()) {
+            boolean valid = (r.strategyOnePoints() == 3 && r.strategyTwoPoints() == 3) ||
+                            (r.strategyOnePoints() == 0 && r.strategyTwoPoints() == 5) ||
+                            (r.strategyOnePoints() == 5 && r.strategyTwoPoints() == 0) ||
+                            (r.strategyOnePoints() == 1 && r.strategyTwoPoints() == 1);
+            if (!valid) throw new IllegalArgumentException("Invalid points in round " + r.roundNumber());
+        }
+
+        int expectedOne = request.rounds().stream().mapToInt(RoundDTO::strategyOnePoints).sum();
+        int expectedTwo = request.rounds().stream().mapToInt(RoundDTO::strategyTwoPoints).sum();
+        if (request.strategyOnePoints() != expectedOne || request.strategyTwoPoints() != expectedTwo) {
+            throw new IllegalArgumentException("Total points do not match sum of rounds");
+        }
+
+
         Strategy strategyOne = strategyService.getById(request.strategyOneId());
         Strategy strategyTwo = strategyService.getById(request.strategyTwoId());
         Strategy winner = request.winnerId() != null ? strategyService.getById(request.winnerId()) : null;
+
 
         Match match = Match.builder()
             .strategyOne(strategyOne)
