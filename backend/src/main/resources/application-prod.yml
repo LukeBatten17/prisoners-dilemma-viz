@@ -3,9 +3,9 @@ spring:
     compose:
       enabled: false
   datasource:
-    url: jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}
-    username: ${PGUSER}
-    password: ${PGPASSWORD}
+    username: ${Postgres.PGUSER}
+    password: ${Postgres.PGPASSWORD}
+    url: jdbc:postgresql://${Postgres.PGHOST}:${Postgres.PGPORT}/${Postgres.PGDATABASE}
   jpa:
     hibernate:
       ddl-auto: validate
