@@ -34,7 +34,7 @@ const MatchCard: React.FC<{ match: RecentMatch }> = ({ match }) => {
       {/* Score */}
       <div className="sm:w-1/3 grid grid-cols-[1fr_auto_1fr] items-center gap-x-2 text-text min-w-0">
         <div
-          className={`flex flex-col items-center min-w-0 ${match.winner === null ? "" : match.strategyOneName === match.winner ? "text-green-500" : "text-red-500"}`}
+          className={`flex flex-col items-center min-w-0 ${match.winner === null ? "" : match.strategyOneName === match.winner ? "text-(--color-green)" : "text-(--color-red)"}`}
         >
           <span className="font-semibold truncate w-full text-center">
             {match.strategyOneName}
@@ -43,7 +43,7 @@ const MatchCard: React.FC<{ match: RecentMatch }> = ({ match }) => {
         </div>
         <span>-</span>
         <div
-          className={`flex flex-col items-center min-w-0 ${match.winner === null ? "" : match.strategyTwoName === match.winner ? "text-green-500" : "text-red-500"}`}
+          className={`flex flex-col items-center min-w-0 ${match.winner === null ? "" : match.strategyTwoName === match.winner ? "text-(--color-green)" : "text-(--color-red)"}`}
         >
           <span className="font-semibold truncate w-full text-center">
             {match.strategyTwoName}

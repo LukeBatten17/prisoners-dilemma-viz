@@ -11,17 +11,17 @@ import type { Ranking } from "../gameSettings/types";
 
 const columnHelper = createColumnHelper<Ranking>();
 
-function ratioToColor(ratio: number): string {
-  if (ratio >= 0.66) return "hsl(120, 80%, 38%)";
-  if (ratio >= 0.33) return "hsl(45, 90%, 42%)";
-  return "hsl(0, 80%, 45%)";
+function ratioToColorClass(ratio: number): string {
+  if (ratio >= 0.66) return "text-green";
+  if (ratio >= 0.33) return "text-yellow";
+  return "text-red";
 }
 
-function avgPointsColor(avg: number): string {
-  if (avg >= 3.0) return "hsl(120, 80%, 38%)"; // green  — above mutual cooperation
-  if (avg >= 2.0) return "hsl(52, 100%, 45%)"; // yellow — at mutual cooperation baseline
-  if (avg >= 1.0) return "hsl(25, 90%, 60%)"; // orange — below baseline
-  return "hsl(0, 80%, 60%)"; // red    — getting exploited
+function avgPointsColorClass(avg: number): string {
+  if (avg >= 2.5) return "text-green";
+  if (avg >= 1.5) return "text-yellow";
+  if (avg >= 0.75) return "text-orange";
+  return "text-red";
 }
 
 const columns = [
@@ -80,7 +80,7 @@ const columns = [
     cell: (info) => {
       const val = info.getValue();
       return (
-        <span style={{ color: avgPointsColor(val) }} className="font-semibold">
+        <span className={`font-semibold ${avgPointsColorClass(val)}`}>
           {val.toFixed(2)}
         </span>
       );
@@ -125,7 +125,7 @@ const columns = [
     cell: (info) => {
       const val = info.getValue();
       return (
-        <span style={{ color: ratioToColor(val) }} className="font-semibold">
+        <span className={`font-semibold ${ratioToColorClass(val)}`}>
           {(val * 100).toFixed(2)}%
         </span>
       );

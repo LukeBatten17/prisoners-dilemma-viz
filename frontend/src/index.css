@@ -14,6 +14,11 @@
   --color-secondary: #686963;
   --color-accent: #d28f74;
 
+  --color-green: hsl(120, 80%, 38%);
+  --color-yellow: hsl(45, 68%, 52%);
+  --color-orange: hsl(25, 90%, 60%);
+  --color-red: hsl(0, 80%, 60%);
+
   --color-strategy-1: oklch(74.6% 0.16 232.661);
   --color-strategy-2: oklch(85.2% 0.199 91.936);
 
@@ -36,6 +41,11 @@
       --color-background: #130b06;
       --color-primary: #d15705;
       --color-secondary: #9b9c96;
+
+      --color-green: hsl(120, 80%, 38%);
+      --color-yellow: hsl(52, 100%, 45%);
+      --color-orange: hsl(25, 90%, 60%);
+      --color-red: hsl(0, 80%, 60%);
 
       --shadow-sm: 2px 2px 0px 0px #e7c6b1;
       --shadow-md: 4px 4px 0px 2px #e7c6b1;
