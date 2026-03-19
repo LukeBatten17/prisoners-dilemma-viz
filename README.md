@@ -3,7 +3,7 @@
 An interactive web-based simulation for exploring strategies in the Iterated Prisoner’s Dilemma.
 
 Website: https://prisoners-dilemma-visualized.com/
-![Website Screenshot](./public/website_ss.png)
+![Website Screenshot](./frontend/public/website_ss.png)
 
 ## Features
 
@@ -11,8 +11,8 @@ Website: https://prisoners-dilemma-visualized.com/
 - Multiple built-in strategies (Tit-for-Tat, Grim, Random, etc.)
 - Configurable number of rounds
 - Optional noise (miscommunication)
-- Real-time score tracking
-- Comparative charts of strategies
+- Real-time score tracking with match results saved to a shared database
+- Various statistics calculated for all completed matches (reached max rounds)
 
 ## How It Works
 
@@ -39,14 +39,26 @@ A few of the strategies included
 - TypeScript
 - Tailwind CSS
 - Vite
+- SpringBoot
+- PostgreSQL
+
+## Future Updates
+
+- More stats:
+  - H2H info and matrix
+  - Match breakdown
+  - Trends
+  - Others metrics (forgiveness rate, retaliation rate, retaliation speed, etc...)
+- Host a tournament
+- More strategies
 
 ## Resources & Further Reading
 
 Axelrod's Book on the 1980 Tournament.
 
-    [A short introudction to the book](https://ee.stanford.edu/~hellman/Breakthrough/book/pdfs/axelrod.pdf)
+[A short introduction to the book](https://ee.stanford.edu/~hellman/Breakthrough/book/pdfs/axelrod.pdf)
 
-    [The Evolution of Cooperation](https://www.goodreads.com/book/show/366821.The_Evolution_of_Cooperation)
+[The Evolution of Cooperation](https://www.goodreads.com/book/show/366821.The_Evolution_of_Cooperation)
 
 Stanford has a great overview of game theory
 [Website by Stanford on Game Theory and Prisoner's Dilemma.](https://cs.stanford.edu/people/eroberts/courses/soco/projects/1998-99/game-theory/index.html)
