@@ -1,6 +1,6 @@
 package com.prisoners_dilemma.api.entities;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -59,7 +59,7 @@ public class Match {
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
-    private LocalDateTime playedAt;
+    private Instant playedAt;
 
     // Winner can be null in case of a tie
     @ManyToOne

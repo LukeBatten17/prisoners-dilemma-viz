@@ -1,6 +1,6 @@
 package com.prisoners_dilemma.api.dtos;
 import java.util.List;
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 public record MatchResponseDTO(    
     Long id,
@@ -12,5 +12,5 @@ public record MatchResponseDTO(
     String winner,
     boolean noise,
     List<RoundDTO> rounds,
-    LocalDateTime playedAt
+    Instant playedAt
     ) {}
