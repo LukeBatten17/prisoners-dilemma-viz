@@ -1,0 +1,3 @@
+ALTER TABLE matches
+    ALTER COLUMN played_at TYPE TIMESTAMP WITH TIME ZONE
+    USING played_at AT TIME ZONE 'UTC';
